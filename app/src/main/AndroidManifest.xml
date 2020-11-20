@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.callberry.callingapp">
+
+    <uses-feature
+        android:name="android.hardware.microphone"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <application
+        android:name=".util.App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_totalk_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_config"
+        android:roundIcon="@mipmap/ic_totalk_launcher_circle"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:targetApi="n">
+        <activity android:name=".ui.LandingActivity" />
+        <activity android:name=".ui.activity.PlaceCallActivity" />
+        <activity
+            android:name=".ui.activity.CallScreenActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".ui.activity.CallRatesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.CallHistoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.SearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.CallActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.CreditHistoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.HomeActivity"
+            android:label="@string/title_activity_home"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.activity.NumberVerificationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.activity.DialActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".LauncherActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service android:name=".service.OutgoingCallService" />
+        <service android:name=".service.CallService" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "223110375818",
+    "firebase_url": "https://totalk-ebfc6.firebaseio.com",
+    "project_id": "totalk-ebfc6",
+    "storage_bucket": "totalk-ebfc6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:223110375818:android:e262c4b92a01421086c073",
+        "android_client_info": {
+          "package_name": "com.callingapp.totalk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "223110375818-3sqr1239fm0qnnpv0469ritvg6f5m5e5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.callingapp.totalk",
+            "certificate_hash": "2ca3c378c0d2e136c960e6bbfed166a39a0a3a9d"
+          }
+        },
+        {
+          "client_id": "223110375818-iouoiktjok9f4n3ohj3tvaplfs65cm34.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpiHg5SiOKs40E0pxPSzRmTb41WaXIHto"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "223110375818-iouoiktjok9f4n3ohj3tvaplfs65cm34.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".ui.activity.CallHistoryActivity">
+
+    <com.ornach.nobobutton.NoboButton
+        android:id="@+id/btnBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:nb_backgroundColor="@color/colorPrimary"
+        app:nb_drawableResource="@drawable/ic_return"
+        app:nb_focusColor="@color/colorPrimaryLight"
+        app:nb_radius="@dimen/default_radius" />
+
+    <TextView
+        android:id="@+id/txtCallHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="@string/call_history"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/btnBack"
+        app:layout_constraintStart_toEndOf="@+id/btnBack"
+        app:layout_constraintTop_toTopOf="@+id/btnBack" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutContactBox">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listRecents"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_primary"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/layoutContactBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:cardBackgroundColor="@color/colorWhite"
+        app:cardCornerRadius="@dimen/default_radius"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnBack">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardDisplayPic"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="100dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/img_view_display_picture"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/img_placeholder"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/textViewIcon"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorTextIconBg"
+                    android:gravity="center"
+                    android:text="AF"
+                    android:textColor="@color/colorTextIcon"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textViewName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:maxLines="1"
+                android:text="Sheikh Arslan"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/textViewPhoneNo"
+                app:layout_constraintEnd_toStartOf="@+id/btnCall"
+                app:layout_constraintStart_toEndOf="@+id/cardDisplayPic"
+                app:layout_constraintTop_toTopOf="@+id/cardDisplayPic"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/textViewPhoneNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Sheikh Arslan"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/cardDisplayPic"
+                app:layout_constraintStart_toEndOf="@+id/cardDisplayPic"
+                app:layout_constraintTop_toBottomOf="@+id/textViewName"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1.5dp"
+                android:background="@color/colorGray25"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/btnCall"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/textViewPhoneNo" />
+
+            <com.ornach.nobobutton.NoboButton
+                android:id="@+id/btnCall"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="8dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:nb_backgroundColor="@color/colorPrimaryLight"
+                app:nb_drawableResource="@drawable/ic_call_primary"
+                app:nb_focusColor="@color/colorPrimary"
+                app:nb_radius="@dimen/round_radius" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

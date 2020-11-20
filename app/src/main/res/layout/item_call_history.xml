@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/textViewTimestamp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:maxLines="1"
+        android:text="Yesterday, 11:32 pm"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/textViewCreditUsed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="12dp"
+        android:text="Credit: $1.43"
+        android:textColor="@color/colorRed"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgCallMade"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTimestamp"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/textViewDuration"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:text="01:23"
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1.5dp"
+        android:layout_marginEnd="24dp"
+        android:background="@color/colorGray25"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textViewTimestamp" />
+
+    <ImageView
+        android:id="@+id/imgCallMade"
+        android:layout_width="20sp"
+        android:layout_height="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewCreditUsed"
+        app:layout_constraintStart_toStartOf="@+id/textViewTimestamp"
+        app:layout_constraintTop_toTopOf="@+id/textViewCreditUsed"
+        app:srcCompat="@drawable/ic_call_made" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.sinch.android.sdk.verification:logging:2.0.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/03a275752a02207d91d5056a45d6c135/logging-2.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/03a275752a02207d91d5056a45d6c135/logging-2.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/03a275752a02207d91d5056a45d6c135/logging-2.0.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sinch.android.sdk.verification/logging/2.0.0/e2a2b26e63be380abbbc750b153904385749fc9/logging-2.0.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sinch.android.sdk.verification/logging/2.0.0/e0468a077292a5738d4188554165330811d7e857/logging-2.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

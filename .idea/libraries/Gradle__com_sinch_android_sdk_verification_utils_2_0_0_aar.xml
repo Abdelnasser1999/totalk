@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.sinch.android.sdk.verification:utils:2.0.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ec6a94a7edadfce40b3da3b5b5925d83/utils-2.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ec6a94a7edadfce40b3da3b5b5925d83/utils-2.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ec6a94a7edadfce40b3da3b5b5925d83/utils-2.0.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sinch.android.sdk.verification/utils/2.0.0/1c14eecfb76def25a10147f27dd25b9ed6a7c2dd/utils-2.0.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sinch.android.sdk.verification/utils/2.0.0/3c6c193b743c849f1e896375bc333b70a5d3e2b8/utils-2.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

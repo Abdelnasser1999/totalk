@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_primary"
+    tools:context=".ui.fragment.MoreFragment">
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/layoutCallRates"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:background="@drawable/bg_item"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/txtCallRate"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:text="@string/menu_call_rates"-->
+<!--            android:textColor="@color/colorPrimaryText"-->
+<!--            android:textSize="18sp"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/txtCallRateSummary"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/imgCallRate"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/imgCallRate"-->
+<!--            app:layout_constraintVertical_chainStyle="packed" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/txtCallRateSummary"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="2dp"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            android:text="@string/call_rates_summary"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/imgCallRate"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/txtCallRate"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/txtCallRate" />-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/imgCallRate"-->
+<!--            android:layout_width="48dp"-->
+<!--            android:layout_height="48dp"-->
+<!--            android:layout_marginStart="8dp"-->
+<!--            android:layout_marginTop="12dp"-->
+<!--            android:layout_marginBottom="12dp"-->
+<!--            android:src="@drawable/ic_referral"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/txtSettings"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:text="@string/action_settings"-->
+<!--        android:textAllCaps="true"-->
+<!--        android:textColor="@color/colorPrimary"-->
+<!--        android:textSize="16sp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/layoutCallRates" />-->
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/layoutSyncContacts"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:background="@drawable/bg_item"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/txtSettings">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/txtSyncContactsSummary"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="72dp"-->
+<!--            android:text="@string/sync_contacts_summary"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/txtSyncContacts"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/txtSyncContacts" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/txtSyncContacts"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:text="@string/sync_contacts"-->
+<!--            android:textColor="@color/colorPrimaryText"-->
+<!--            android:textSize="18sp"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/txtSyncContactsSummary"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/imgSyncContactsSummary"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintVertical_chainStyle="packed" />-->
+
+
+<!--        <ImageView-->
+<!--            android:id="@+id/imgSyncContactsSummary"-->
+<!--            android:layout_width="48dp"-->
+<!--            android:layout_height="48dp"-->
+<!--            android:layout_marginStart="8dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginBottom="8dp"-->
+<!--            android:src="@drawable/ic_referral"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--        <Switch-->
+<!--            android:id="@+id/switchSyncContacts"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:paddingEnd="16dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/layoutBonusNotification"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:background="@drawable/bg_item"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/layoutSyncContacts">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/txtBonusSummary"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="72dp"-->
+<!--            android:text="@string/bonus_notification_summary"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.5"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/txtBonusNotification"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/txtBonusNotification" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/txtBonusNotification"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:text="@string/bonus_notification"-->
+<!--            android:textColor="@color/colorPrimaryText"-->
+<!--            android:textSize="18sp"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/txtBonusSummary"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/imgBonusNotification"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintVertical_chainStyle="packed" />-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/imgBonusNotification"-->
+<!--            android:layout_width="48dp"-->
+<!--            android:layout_height="48dp"-->
+<!--            android:layout_marginStart="8dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginBottom="8dp"-->
+<!--            android:src="@drawable/ic_referral"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--        <Switch-->
+<!--            android:id="@+id/switchBonusNotification"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:paddingEnd="16dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/txtSettings2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:text="@string/info"-->
+<!--        android:textAllCaps="true"-->
+<!--        android:textColor="@color/colorPrimary"-->
+<!--        android:textSize="16sp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/layoutBonusNotification" />-->
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/update_layout"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:background="@drawable/bg_ripple"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/policy_layout">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/updateTxt"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:layout_marginEnd="8dp"-->
+<!--            android:fontFamily="@font/montserrat"-->
+<!--            android:text="@string/check_for_update"-->
+<!--            android:textColor="@color/colorBlack"-->
+<!--            android:textSize="18sp"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/updateImg"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/version_txt"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/updateImg"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/updateImg" />-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/updateImg"-->
+<!--            android:layout_width="26dp"-->
+<!--            android:layout_height="26dp"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:srcCompat="@drawable/ic_update" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/version_txt"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            android:fontFamily="@font/montserrat"-->
+<!--            android:text="@string/v1_1_0"-->
+<!--            android:textSize="12sp"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/updateImg"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/updateImg" />-->
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/policy_layout"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:background="@drawable/bg_ripple"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/share_layout">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/policyTxt"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:fontFamily="@font/montserrat"-->
+<!--            android:text="@string/privacy_policy"-->
+<!--            android:textColor="@color/colorBlack"-->
+<!--            android:textSize="18sp"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/policyImg"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/policyImg"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/policyImg" />-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/policyImg"-->
+<!--            android:layout_width="26dp"-->
+<!--            android:layout_height="26dp"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:srcCompat="@drawable/ic_privacy_policy" />-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/share_layout"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:background="@drawable/bg_ripple"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/rate_layout">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/shareTxt"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:fontFamily="@font/montserrat"-->
+<!--            android:text="@string/share_app"-->
+<!--            android:textColor="@color/colorBlack"-->
+<!--            android:textSize="18sp"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/shareImg"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/shareImg"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/shareImg" />-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/shareImg"-->
+<!--            android:layout_width="26dp"-->
+<!--            android:layout_height="26dp"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:srcCompat="@drawable/ic_app_share" />-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/rate_layout"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:background="@drawable/bg_ripple"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/txtSettings2">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/rateAppTxt"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:fontFamily="@font/montserrat"-->
+<!--            android:text="@string/rate_app"-->
+<!--            android:textColor="@color/colorBlack"-->
+<!--            android:textSize="18sp"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/rateImg"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/rateImg"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/rateImg" />-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/rateImg"-->
+<!--            android:layout_width="26dp"-->
+<!--            android:layout_height="26dp"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:srcCompat="@drawable/ic_rate" />-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--    -->
+<!--    -->
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutNotification"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_ripple"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/textViewNotification"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="64dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/bonus_notification"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/textNotificationSummary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgNotication"
+            app:layout_constraintTop_toTopOf="@+id/imgNotication" />
+
+        <ImageView
+            android:id="@+id/imgNotication"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_notification" />
+
+        <TextView
+            android:id="@+id/textNotificationSummary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/bonus_notification_summary"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgNotication"
+            app:layout_constraintEnd_toEndOf="@+id/textViewNotification"
+            app:layout_constraintStart_toStartOf="@+id/textViewNotification"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNotification" />
+
+        <Switch
+            android:id="@+id/switchBonusNotification"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingEnd="16dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/update_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_ripple"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/policy_layout">
+
+        <TextView
+            android:id="@+id/updateTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/check_for_update"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/updateImg"
+            app:layout_constraintEnd_toStartOf="@+id/version_txt"
+            app:layout_constraintStart_toEndOf="@+id/updateImg"
+            app:layout_constraintTop_toTopOf="@+id/updateImg" />
+
+        <ImageView
+            android:id="@+id/updateImg"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_update" />
+
+        <TextView
+            android:id="@+id/version_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/v1_1_0"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/updateImg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/updateImg" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/policy_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_ripple"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/share_layout">
+
+        <TextView
+            android:id="@+id/policyTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/privacy_policy"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/policyImg"
+            app:layout_constraintStart_toEndOf="@+id/policyImg"
+            app:layout_constraintTop_toTopOf="@+id/policyImg" />
+
+        <ImageView
+            android:id="@+id/policyImg"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_privacy_policy" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/share_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_ripple"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rate_layout">
+
+        <TextView
+            android:id="@+id/shareTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/share_app"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/shareImg"
+            app:layout_constraintStart_toEndOf="@+id/shareImg"
+            app:layout_constraintTop_toTopOf="@+id/shareImg" />
+
+        <ImageView
+            android:id="@+id/shareImg"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_app_share" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rate_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_ripple"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutNotification">
+
+        <TextView
+            android:id="@+id/rateAppTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/rate_app"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/rateImg"
+            app:layout_constraintStart_toEndOf="@+id/rateImg"
+            app:layout_constraintTop_toTopOf="@+id/rateImg" />
+
+        <ImageView
+            android:id="@+id/rateImg"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_rate" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

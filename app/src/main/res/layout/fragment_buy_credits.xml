@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.BuyCreditsFragment">
+
+    <include layout="@layout/content_buy_credits"/>
+
+<!--    <TextView-->
+<!--        android:id="@+id/textViewChosePlan"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:text="@string/choose_your_plan"-->
+<!--        android:textColor="@color/colorPrimaryText"-->
+<!--        android:textSize="24sp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/layoutBronze"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:background="@drawable/bg_package"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/layoutSilver"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/layoutSilver"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/layoutSilver">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/imgViewBronze"-->
+<!--            android:layout_width="32dp"-->
+<!--            android:layout_height="32dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:srcCompat="@drawable/ic_bronze" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textViewBronzeValue"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            android:text="@string/bronze_value"-->
+<!--            android:textSize="30sp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/imgViewBronze" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textViewBronze"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            android:text="@string/bronze"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textViewBronzeValue" />-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/layoutSilver"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:background="@drawable/bg_package"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/layoutGold"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/layoutBronze"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textViewChosePlan">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/imgViewSilver"-->
+<!--            android:layout_width="32dp"-->
+<!--            android:layout_height="32dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:srcCompat="@drawable/ic_silver" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textViewSilverValue"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            android:text="@string/silver_value"-->
+<!--            android:textSize="30sp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/imgViewSilver" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textViewSilver"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            android:text="@string/silver"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textViewSilverValue" />-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/layoutGold"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:background="@drawable/bg_package"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/layoutSilver"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/layoutSilver"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/layoutSilver">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/imgViewGold"-->
+<!--            android:layout_width="32dp"-->
+<!--            android:layout_height="32dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:srcCompat="@drawable/ic_gold" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textViewGoldrValue"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            android:text="@string/gold_value"-->
+<!--            android:textSize="30sp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/imgViewGold" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textViewGold"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            android:text="@string/gold"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textViewGoldrValue" />-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/btnBuy"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:enabled="false"-->
+<!--        android:padding="10dp"-->
+<!--        android:text="@string/btn_buy"-->
+<!--        android:textSize="18sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/layoutSilver" />-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

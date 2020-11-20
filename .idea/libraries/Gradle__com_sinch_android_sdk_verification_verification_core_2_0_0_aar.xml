@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.sinch.android.sdk.verification:verification-core:2.0.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8a6a86d3ce965ad0cd08913d2946765e/verification-core-2.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8a6a86d3ce965ad0cd08913d2946765e/verification-core-2.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8a6a86d3ce965ad0cd08913d2946765e/verification-core-2.0.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sinch.android.sdk.verification/verification-core/2.0.0/bc40a043d6766a55db660e2fc922127621ef57a1/verification-core-2.0.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sinch.android.sdk.verification/verification-core/2.0.0/f42c375e9d54acf976fe616e42cf21b0df2319cd/verification-core-2.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

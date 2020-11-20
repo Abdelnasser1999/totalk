@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.jackandphantom.android:circularimageview:1.2.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3809dc04844ad56dd2a7ed11e75d1a35/circularimageview-1.2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3809dc04844ad56dd2a7ed11e75d1a35/circularimageview-1.2.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3809dc04844ad56dd2a7ed11e75d1a35/circularimageview-1.2.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jackandphantom.android/circularimageview/1.2.0/cc81ba3fce1c3543360d66309e9ad01add661fb7/circularimageview-1.2.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jackandphantom.android/circularimageview/1.2.0/8c2730b432f37e077256f87c727b417804829f5a/circularimageview-1.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

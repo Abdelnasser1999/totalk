@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.EarnCreditsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutBuy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/txtViewBuyCredits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/buy_credits"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewChosePlan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/choose_your_plan"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtViewBuyCredits" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listPackages"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewChosePlan" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutEarn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/layoutBuy">
+
+
+            <TextView
+                android:id="@+id/txtViewEarnCredits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/earn_credits"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutBonus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_package"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtViewEarnCredits">
+
+                <com.ornach.nobobutton.NoboButton
+                    android:id="@+id/noboBonus"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:padding="0dp"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:nb_backgroundColor="@color/colorWhite"
+                    app:nb_borderColor="#9c27b0"
+                    app:nb_borderWidth="0dp"
+                    app:nb_drawableResource="@drawable/ic_referral"
+                    app:nb_focusColor="@color/colorWhite"
+                    app:nb_radius="@dimen/round_radius" />
+
+                <TextView
+                    android:id="@+id/textViewBonus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/bonus"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toTopOf="@+id/textViewBonusDesp"
+                    app:layout_constraintStart_toEndOf="@+id/noboBonus"
+                    app:layout_constraintTop_toTopOf="@+id/noboBonus"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/textViewBonusDesp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/bonus_desp"
+                    android:textColor="@color/colorSecondaryText"
+                    app:layout_constraintBottom_toBottomOf="@+id/noboBonus"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textViewBonus"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewBonus" />
+
+                <TextView
+                    android:id="@+id/textViewBonusValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/bg_non_active"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="01 : 45: 39"
+                    android:textColor="@color/colorGray"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/noboBonus" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutDailyCheckIn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_package"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutBonus">
+
+                <com.ornach.nobobutton.NoboButton
+                    android:id="@+id/NoboDailyCheckIn"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:padding="14dp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:nb_backgroundColor="@color/colorWhite"
+                    app:nb_borderColor="@color/colorCheckInBorder"
+                    app:nb_borderWidth="0dp"
+                    app:nb_drawableResource="@drawable/ic_check_in"
+                    app:nb_focusColor="@color/colorWhite"
+                    app:nb_radius="@dimen/round_radius" />
+
+                <TextView
+                    android:id="@+id/txtViewDailyCheckIn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/daily_check_in"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toTopOf="@+id/txtViewCheckInDesp"
+                    app:layout_constraintStart_toEndOf="@+id/NoboDailyCheckIn"
+                    app:layout_constraintTop_toTopOf="@+id/NoboDailyCheckIn"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/txtViewCheckInDesp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/check_in_desp"
+                    android:textColor="@color/colorSecondaryText"
+                    app:layout_constraintBottom_toBottomOf="@+id/NoboDailyCheckIn"
+                    app:layout_constraintEnd_toStartOf="@+id/btnCheckIn"
+                    app:layout_constraintStart_toStartOf="@+id/txtViewDailyCheckIn"
+                    app:layout_constraintTop_toBottomOf="@+id/txtViewDailyCheckIn" />
+
+                <com.ornach.nobobutton.NoboButton
+                    android:id="@+id/btnCheckIn"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:padding="12dp"
+                    android:visibility="visible"
+                    app:nb_enabled="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:nb_backgroundColor="@color/colorPrimary"
+                    app:nb_borderColor="@color/colorPrimary"
+                    app:nb_borderWidth="1dp"
+                    app:nb_drawableResource="@drawable/ic_check_primary"
+                    app:nb_focusColor="@color/colorRipple"
+                    app:nb_iconColor="@color/colorPrimary"
+                    app:nb_radius="@dimen/round_radius" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutWatchAds"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_package"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutDailyCheckIn">
+
+                <com.ornach.nobobutton.NoboButton
+                    android:id="@+id/NoboWatchAds"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:padding="14dp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:nb_backgroundColor="@color/colorWhite"
+                    app:nb_borderColor="@color/colorWatchAdBorder"
+                    app:nb_borderWidth="0dp"
+                    app:nb_drawableResource="@drawable/ic_watch_ad"
+                    app:nb_focusColor="@color/colorWhite"
+                    app:nb_radius="@dimen/round_radius" />
+
+                <TextView
+                    android:id="@+id/txtViewWatchAds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/watch_ads"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toTopOf="@+id/txtViewWatchAdsDesp"
+                    app:layout_constraintStart_toEndOf="@+id/NoboWatchAds"
+                    app:layout_constraintTop_toTopOf="@+id/NoboWatchAds"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/txtViewWatchAdsDesp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/watch_ad_desp"
+                    android:textColor="@color/colorSecondaryText"
+                    app:layout_constraintBottom_toBottomOf="@+id/NoboWatchAds"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewWatch"
+                    app:layout_constraintStart_toStartOf="@+id/txtViewWatchAds"
+                    app:layout_constraintTop_toBottomOf="@+id/txtViewWatchAds" />
+
+                <TextView
+                    android:id="@+id/textViewWatch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:padding="8dp"
+                    android:text="@string/watch"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutReferral"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_package"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutWatchAds">
+
+                <com.ornach.nobobutton.NoboButton
+                    android:id="@+id/btnCopy"
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:layout_marginEnd="16dp"
+                    android:padding="12dp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="@+id/txtViewRefCode"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txtViewRefCode"
+                    app:nb_backgroundColor="@color/colorPrimary"
+                    app:nb_borderColor="@color/colorPrimary"
+                    app:nb_borderWidth="2dp"
+                    app:nb_drawableResource="@drawable/ic_content_copy"
+                    app:nb_focusColor="@color/colorRipple"
+                    app:nb_iconColor="@color/colorPrimary"
+                    app:nb_radius="@dimen/default_radius" />
+
+                <com.ornach.nobobutton.NoboButton
+                    android:id="@+id/NoboReferralCode"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:padding="0dp"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:nb_backgroundColor="@color/colorWhite"
+                    app:nb_borderColor="#9c27b0"
+                    app:nb_borderWidth="0dp"
+                    app:nb_drawableResource="@drawable/ic_referral"
+                    app:nb_focusColor="@color/colorWhite"
+                    app:nb_radius="@dimen/round_radius" />
+
+                <TextView
+                    android:id="@+id/txtViewReferralCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/referral_program"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toTopOf="@+id/txtViewReferralCodeDesp"
+                    app:layout_constraintStart_toEndOf="@+id/NoboReferralCode"
+                    app:layout_constraintTop_toTopOf="@+id/NoboReferralCode"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/txtViewReferralCodeDesp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/referral_desp"
+                    android:textColor="@color/colorSecondaryText"
+                    app:layout_constraintBottom_toBottomOf="@+id/NoboReferralCode"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/txtViewReferralCode"
+                    app:layout_constraintTop_toBottomOf="@+id/txtViewReferralCode" />
+
+                <TextView
+                    android:id="@+id/txtViewRefCode"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/bg_referral_code"
+                    android:padding="12dp"
+                    android:paddingStart="16dp"
+                    android:text="3B3J4HJ4"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btnCopy"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/NoboReferralCode" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

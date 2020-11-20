@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textViewResendCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+        android:padding="12dp"
+        android:text="01 : 45: 39"
+        android:textColor="@color/colorGray"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutCode" />
+
+    <TextView
+        android:id="@+id/txtEnterCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/verify_your_number"
+        android:textColor="@color/colorBlack"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtCodeDesp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/enter_code_descp"
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/txtEnterCode"
+        app:layout_constraintStart_toStartOf="@+id/txtEnterCode"
+        app:layout_constraintTop_toBottomOf="@+id/txtEnterCode" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCodeDesp">
+
+        <com.mukesh.OtpView
+            android:id="@+id/otpView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:textColor="@color/colorBlack"
+            app:OtpItemCount="6"
+            app:OtpLineColor="@color/colorPrimary50"
+            app:OtpViewType="line"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--                <EditText-->
+        <!--                    android:id="@+id/editTexCode"-->
+        <!--                    android:layout_width="0dp"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_marginTop="8dp"-->
+        <!--                    android:layout_marginBottom="8dp"-->
+        <!--                    android:background="@drawable/bg_remove_border"-->
+        <!--                    android:ems="10"-->
+        <!--                    android:hint="Verification Code"-->
+        <!--                    android:inputType="phone"-->
+        <!--                    android:paddingTop="4dp"-->
+        <!--                    android:paddingBottom="4dp"-->
+        <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                    app:layout_constraintStart_toStartOf="parent"-->
+        <!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+        <!--                <View-->
+        <!--                    android:id="@+id/viewBorderCode"-->
+        <!--                    android:layout_width="0dp"-->
+        <!--                    android:layout_height="1dp"-->
+        <!--                    android:background="@color/colorBorder"-->
+        <!--                    android:visibility="visible"-->
+        <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                    app:layout_constraintStart_toStartOf="parent" />-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

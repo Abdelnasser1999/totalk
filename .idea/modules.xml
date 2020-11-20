@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/freecall-codecanyon.iml" filepath="$PROJECT_DIR$/.idea/modules/freecall-codecanyon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/freecall-codecanyon.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/freecall-codecanyon.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/nativetemplates/freecall-codecanyon.nativetemplates.iml" filepath="$PROJECT_DIR$/.idea/modules/nativetemplates/freecall-codecanyon.nativetemplates.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sinch-android-rtc-3.17.4/freecall-codecanyon.sinch-android-rtc-3.17.4.iml" filepath="$PROJECT_DIR$/.idea/modules/sinch-android-rtc-3.17.4/freecall-codecanyon.sinch-android-rtc-3.17.4.iml" />
+    </modules>
+  </component>
+</project>

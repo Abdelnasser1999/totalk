@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.ornach.nobobutton.NoboButton
+        android:id="@+id/btnCont"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:padding="12dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/txtVerifyPhoneNo"
+        app:layout_constraintStart_toStartOf="@+id/txtVerifyPhoneNo"
+        app:layout_constraintTop_toBottomOf="@+id/viewPhoneNumber"
+        app:nb_backgroundColor="@color/colorPrimary"
+        app:nb_enabled="false"
+        app:nb_focusColor="@color/colorRipple"
+        app:nb_text="@string/send_code"
+        app:nb_textColor="@color/colorWhite"
+        app:nb_textSize="18sp"
+        app:nb_radius="4dp"
+        app:nb_textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtVerifyPhoneNo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/phone_number"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtMobileNoDesp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/enter_phone_desp"
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/txtVerifyPhoneNo"
+        app:layout_constraintStart_toStartOf="@+id/txtVerifyPhoneNo"
+        app:layout_constraintTop_toBottomOf="@+id/txtVerifyPhoneNo" />
+
+    <View
+        android:id="@+id/viewPhoneNumber"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:background="@color/colorBlack25"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/mainMobileNumber"
+        app:layout_constraintStart_toStartOf="@+id/layoutSelectCountry"
+        app:layout_constraintTop_toBottomOf="@+id/mainMobileNumber" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutSelectCountry"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/bg_item"
+        app:layout_constraintBottom_toBottomOf="@+id/mainMobileNumber"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/mainMobileNumber">
+
+        <ImageView
+            android:id="@+id/imgIconOpen"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txtViewCountry"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txtViewCountry"
+            app:srcCompat="@drawable/ic_arrow_down" />
+
+        <TextView
+            android:id="@+id/txtViewCountry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="Flag"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imgIconOpen"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainMobileNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/layoutSelectCountry"
+        app:layout_constraintTop_toBottomOf="@+id/txtMobileNoDesp">
+
+        <TextView
+            android:id="@+id/txtDialCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_item"
+            android:gravity="center"
+            android:text="+92"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextMobileNo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/editTextMobileNo" />
+
+        <EditText
+            android:id="@+id/editTextMobileNo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bg_remove_border"
+            android:ems="10"
+            android:hint="@string/mobile_number"
+            android:inputType="phone"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtDialCode"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
