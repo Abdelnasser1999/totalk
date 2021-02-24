@@ -18,7 +18,7 @@ public class MaterialProgress {
     private Activity activity;
     private Dialog dialog;
     private float radius = 4f;
-    private int backgroundColor = android.R.color.white;
+    private int backgroundColor = R.color.colorDayNight;
     private boolean isCancelable = false;
 
     public MaterialProgress(Activity activity) {

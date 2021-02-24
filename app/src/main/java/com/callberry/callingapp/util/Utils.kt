@@ -1,6 +1,7 @@
 package com.callberry.callingapp.util
 
 import android.content.Context
+import android.util.Log
 import com.callberry.callingapp.R
 import com.callberry.callingapp.model.Account
 import com.callberry.callingapp.model.Contact

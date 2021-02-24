@@ -4,19 +4,16 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
 import com.callberry.callingapp.R
 import com.callberry.callingapp.materialdialog.MaterialProgressDialog
-import com.callberry.callingapp.model.Account
 import com.callberry.callingapp.ui.activity.MainActivity
 import com.callberry.callingapp.ui.activity.NumberVerificationActivity
 import com.callberry.callingapp.util.*
-import com.callberry.callingapp.viewmodel.AccountViewModel
 import com.callberry.callingapp.viewmodel.PreferenceViewModel
 import kotlinx.android.synthetic.main.activity_landing.*
-import java.lang.RuntimeException
 
 class LandingActivity : AppCompatActivity() {
 
@@ -25,9 +22,13 @@ class LandingActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // setAutoDarkMode()
         setContentView(R.layout.activity_landing)
-
         initViews()
+    }
+
+    private fun setAutoDarkMode() {
+        //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
     }
 
     private fun initViews() {

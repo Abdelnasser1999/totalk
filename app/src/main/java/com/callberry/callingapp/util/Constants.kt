@@ -41,9 +41,9 @@ class Constants {
         const val LAST_SYNC = "LAST_SYNC"
 
         val defaultCreditsLimits = arrayListOf<RemoteCredit>(
-            RemoteCredit(BONUS_CREDIT, "0.1, 0.001"),
-            RemoteCredit(CHECK_IN_CREDIT, "1, 0.01"),
-            RemoteCredit(WATCH_VIDEOS_CREDIT, "2, 0.1")
+                RemoteCredit(BONUS_CREDIT, "0.1, 0.001"),
+                RemoteCredit(CHECK_IN_CREDIT, "1, 0.01"),
+                RemoteCredit(WATCH_VIDEOS_CREDIT, "2, 0.1")
         )
 
         const val CALL_RATES_LOGS = "callRatesLogs"

@@ -9,11 +9,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.callberry.callingapp.R
 import com.callberry.callingapp.adapter.CallHistoryAdapter
+import com.callberry.callingapp.admob.AdHelper
 import com.callberry.callingapp.model.Contact
 import com.callberry.callingapp.ui.fragment.InitCallFragment
 import com.callberry.callingapp.util.Constants
 import com.callberry.callingapp.util.UIUtil
 import com.callberry.callingapp.viewmodel.RecentViewModel
+import com.google.android.gms.ads.AdSize
 import kotlinx.android.synthetic.main.activity_call_history.*
 import kotlin.collections.ArrayList
 
@@ -31,6 +33,8 @@ class CallHistoryActivity : AppCompatActivity() {
         viewModel = RecentViewModel.getInstance(this)
 
         initViews()
+
+        AdHelper.loadBannerAd(layoutAdsContainer, AdSize.BANNER)
 
     }
 

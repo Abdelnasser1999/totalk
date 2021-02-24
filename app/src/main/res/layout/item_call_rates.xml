@@ -15,7 +15,7 @@
         android:layout_marginBottom="12dp"
         android:maxLines="1"
         android:text="Pakistan"
-        android:textColor="#000000"
+        android:textColor="@color/colorPrimaryText"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textViewCredits"
@@ -42,7 +42,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="F"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/colorPrimaryText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

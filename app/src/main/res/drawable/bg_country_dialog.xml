@@ -3,5 +3,5 @@
 <!--    <corners android:topLeftRadius="@dimen/default_radius"-->
 <!--        android:topRightRadius="@dimen/default_radius"/>-->
     <corners android:radius="@dimen/default_radius"/>
-    <solid android:color="@color/colorWhite"/>
+    <solid android:color="@color/colorDayNight"/>
 </shape>

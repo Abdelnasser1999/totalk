@@ -20,6 +20,9 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.callberry.callingapp.R
+import com.callberry.callingapp.admob.AdHelper
+import com.callberry.callingapp.admob.Interstitial
+import com.callberry.callingapp.admob.OnInterstitialAdListener
 import com.callberry.callingapp.materialdialog.MaterialAlertDialog
 import com.callberry.callingapp.model.Credit
 import com.callberry.callingapp.model.OutgoingCall
@@ -47,6 +50,7 @@ class CallActivity : AppCompatActivity(), CallChangeListener {
     private var isCallInProgress = false
     private lateinit var outgoingCall: OutgoingCall
     private var timeInSeconds: Int = 0
+    private var adHelper = AdHelper()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -192,12 +196,15 @@ class CallActivity : AppCompatActivity(), CallChangeListener {
 
     private fun initViews() {
         outgoingCall =
-            SharedPrefUtil.get( Constants.OUTGOING_CALL, OutgoingCall::class) as OutgoingCall
+            SharedPrefUtil.get(Constants.OUTGOING_CALL, OutgoingCall::class) as OutgoingCall
         textViewName.text = outgoingCall.name
         textViewPhoneNo.text = outgoingCall.phoneNo
         UIUtil.setIcon(this, textViewIcon, outgoingCall.name, outgoingCall.theme)
         initSpeakerMuteListeners()
-        btnEndCall.setOnClickListener { hangupCall() }
+        btnEndCall.setOnClickListener {
+            hangupCall()
+            AdHelper.showInterstitialAd(null)
+        }
         materialBtnClose.setOnClickListener { finish() }
 //        textViewEstimatedCallDuration.text =
 //            "${getString(R.string.estimation)} ${UIUtil.formatCallDuration(timeInSeconds)}"
@@ -349,5 +356,6 @@ class CallActivity : AppCompatActivity(), CallChangeListener {
             Log.d(tag, message)
         }
     }
+
 
 }

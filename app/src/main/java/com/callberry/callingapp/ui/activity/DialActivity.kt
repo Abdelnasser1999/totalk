@@ -19,7 +19,7 @@ class DialActivity : AppCompatActivity() {
 
     private fun clearListener(): View.OnClickListener {
         return View.OnClickListener {
-            toast("Clear Number")
+            toast(getString(R.string.clear_number))
         }
     }
 

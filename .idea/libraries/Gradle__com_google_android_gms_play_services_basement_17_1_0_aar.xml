@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.android.gms:play-services-basement:17.1.0@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/294a695e1a4ef564b36b4a10a5333242/jetified-play-services-basement-17.1.0/res" />
+      <root url="jar://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/294a695e1a4ef564b36b4a10a5333242/jetified-play-services-basement-17.1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/294a695e1a4ef564b36b4a10a5333242/jetified-play-services-basement-17.1.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/47cd282b023adcafaffcf633406ae4c5/jetified-play-services-basement-17.1.0/res" />
+      <root url="jar://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/47cd282b023adcafaffcf633406ae4c5/jetified-play-services-basement-17.1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/47cd282b023adcafaffcf633406ae4c5/jetified-play-services-basement-17.1.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/4be81521bd3f8515979e2cfef827b602/jetified-play-services-basement-17.1.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/4be81521bd3f8515979e2cfef827b602/jetified-play-services-basement-17.1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/4be81521bd3f8515979e2cfef827b602/jetified-play-services-basement-17.1.0/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/Downloads/gradle-3.3/caches/modules-2/files-2.1/com.google.android.gms/play-services-basement/17.1.0/7fa2e5498ad43ed18a3cf89f1c615821d2174dd8/play-services-basement-17.1.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>

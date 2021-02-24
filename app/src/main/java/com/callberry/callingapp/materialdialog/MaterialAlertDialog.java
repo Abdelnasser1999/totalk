@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
+
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
@@ -17,9 +18,9 @@ public class MaterialAlertDialog {
 
     private Activity activity;
     private Dialog dialog;
-    private String title = "Oops";
-    private String message = "Something went wrong please check your internet connection and try again.";
-    private String positiveText = "Close";
+    private String title;
+    private String message;
+    private String positiveText;
     private String negativeText = null;
     private float radius = 8f;
     private int textColor = android.R.color.black;
@@ -31,6 +32,12 @@ public class MaterialAlertDialog {
 
     public MaterialAlertDialog(Activity activity) {
         this.activity = activity;
+        title = activity.getString(R.string.oops);
+        message = activity.getString(R.string.something_went_wrong_please_check_your_internet_connection_and_try_again);
+        positiveText = activity.getString(R.string.close);
+        this.textColor= R.color.colorPrimaryText;
+        this.backgroundColor=R.color.colorDayNight;
+
     }
 
     public void setTitle(String title) {

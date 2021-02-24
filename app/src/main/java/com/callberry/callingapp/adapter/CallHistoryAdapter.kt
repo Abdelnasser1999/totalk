@@ -11,7 +11,7 @@ import com.callberry.callingapp.model.Recent
 import com.callberry.callingapp.util.TimeUtil
 
 class CallHistoryAdapter(val context: Context, val recentList: ArrayList<Recent>) :
-    RecyclerView.Adapter<CallHistoryAdapter.ViewHolder>() {
+        RecyclerView.Adapter<CallHistoryAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textViewTimestamp: TextView = view.findViewById(R.id.textViewTimestamp)
@@ -21,7 +21,7 @@ class CallHistoryAdapter(val context: Context, val recentList: ArrayList<Recent>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_call_history, parent, false)
+                LayoutInflater.from(parent.context).inflate(R.layout.item_call_history, parent, false)
         return ViewHolder(view)
     }
 

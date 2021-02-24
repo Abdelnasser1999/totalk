@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorTab"
     tools:context=".ui.activity.CreditHistoryActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,7 +24,7 @@
             android:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:nb_backgroundColor="@color/colorPrimary"
+            app:nb_backgroundColor="@android:color/transparent"
             app:nb_drawableResource="@drawable/ic_return"
             app:nb_focusColor="@color/colorPrimaryLight"
             app:nb_radius="@dimen/default_radius" />

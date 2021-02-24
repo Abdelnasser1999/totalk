@@ -1,14 +1,16 @@
 package com.callberry.callingapp.ui.fragment
 
 import android.Manifest
+import android.content.ContentProviderClient
 import android.content.Context
+import android.database.Cursor
 import android.os.Bundle
+import android.provider.CalendarContract.Attendees.query
+import android.provider.CalendarContract.EventDays.query
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.nabinbhandari.android.permissions.PermissionHandler
-import com.nabinbhandari.android.permissions.Permissions
 import com.callberry.callingapp.R
 import com.callberry.callingapp.adapter.ContactAdapter
 import com.callberry.callingapp.materialdialog.MaterialProgressDialog
@@ -16,10 +18,9 @@ import com.callberry.callingapp.model.Contact
 import com.callberry.callingapp.util.UIUtil
 import com.callberry.callingapp.util.exchangeView
 import com.callberry.callingapp.viewmodel.ContactViewModel
+import com.nabinbhandari.android.permissions.PermissionHandler
+import com.nabinbhandari.android.permissions.Permissions
 import kotlinx.android.synthetic.main.fragment_contact.*
-import kotlinx.coroutines.Dispatchers.Main
-import kotlinx.coroutines.withContext
-
 
 class ContactFragment : Fragment(R.layout.fragment_contact), ContactAdapter.ContactSelectListener {
 
@@ -30,7 +31,6 @@ class ContactFragment : Fragment(R.layout.fragment_contact), ContactAdapter.Cont
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         init()
 
     }
@@ -52,35 +52,40 @@ class ContactFragment : Fragment(R.layout.fragment_contact), ContactAdapter.Cont
             recycleViewContacts.layoutManager = LinearLayoutManager(context)
             recycleViewContacts.adapter = adapter
             exchangeView(
-                recycleViewContacts,
-                arrayListOf(layoutNoContacts as View, layoutProgress as View)
+                    recycleViewContacts,
+                    arrayListOf(layoutNoContacts as View, layoutProgress as View)
             )
         })
     }
 
     private val importContactListener = View.OnClickListener {
-        Permissions.check(context, Manifest.permission.READ_CONTACTS, null,
-            object : PermissionHandler() {
-                override fun onGranted() {
-                    showProgress(getString(R.string.importing_contacts))
-                    viewModel.importContacts {
-                        dismissProgress()
-                        getContacts()
-                    }
-                }
+        requestPermission()
+    }
 
-                override fun onDenied(context: Context?, deniedPermissions: ArrayList<String>?) {
-                    UIUtil.popPermissionDenied(activity!!) {
-                        if (it) {
-                            showProgress(getString(R.string.importing_contacts))
-                            viewModel.importContacts {
-                                dismissProgress()
-                                getContacts()
+    private fun requestPermission() {
+        Permissions.check(context, Manifest.permission.READ_CONTACTS, null,
+                object : PermissionHandler() {
+                    override fun onGranted() {
+                        showProgress(getString(R.string.importing_contacts))
+                        viewModel.importContacts {
+                            dismissProgress()
+                            getContacts()
+                        }
+                    }
+
+                    override fun onDenied(context: Context?, deniedPermissions: ArrayList<String>?) {
+                        UIUtil.popPermissionDenied(activity!!) {
+                            if (it) {
+                                /*              showProgress(getString(R.string.importing_contacts))
+                                    viewModel.importContacts {
+                                        dismissProgress()
+                                        getContacts()
+                                    }*/
+                                requestPermission()
                             }
                         }
                     }
-                }
-            })
+                })
     }
 
     private fun init() {
@@ -89,6 +94,7 @@ class ContactFragment : Fragment(R.layout.fragment_contact), ContactAdapter.Cont
         txtViewImportContacts.setOnClickListener(importContactListener)
 
     }
+
 
     private fun showProgress(msg: String) {
         progressDialog.setCancelable(false)
@@ -108,12 +114,11 @@ class ContactFragment : Fragment(R.layout.fragment_contact), ContactAdapter.Cont
 
     override fun onContactSelect(contact: Contact) {
         val permissions =
-            arrayOf(Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_PHONE_STATE)
+                arrayOf(Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_PHONE_STATE)
         Permissions.check(context!!, permissions, null, null, object : PermissionHandler() {
             override fun onGranted() {
                 InitCallFragment.init(childFragmentManager, contact)
             }
         })
     }
-
 }

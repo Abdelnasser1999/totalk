@@ -136,7 +136,7 @@ class CreditViewModel(val app: Application) : AndroidViewModel(app) {
     companion object {
         fun getInstance(activity: Activity): CreditViewModel {
             return ViewModelProvider.AndroidViewModelFactory(activity.application)
-                .create(CreditViewModel::class.java)
+                    .create(CreditViewModel::class.java)
         }
     }
 

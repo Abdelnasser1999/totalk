@@ -24,6 +24,9 @@ import com.callberry.callingapp.viewmodel.PreferenceViewModel
 import com.google.android.gms.auth.api.credentials.Credential
 import com.google.android.gms.auth.api.credentials.Credentials
 import com.google.android.gms.auth.api.credentials.HintRequest
+/*import com.google.android.gms.auth.api.credentials.Credential
+import com.google.android.gms.auth.api.credentials.Credentials
+import com.google.android.gms.auth.api.credentials.HintRequest*/
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
@@ -114,21 +117,22 @@ class NumberVerificationActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun sendVerificationCode() {
         materialProgress.show()
+
         val dialCode = txtDialCode.text.toString()
-            .substring(txtDialCode.text.indexOf("+"), txtDialCode.length())
+                .substring(txtDialCode.text.indexOf("+"), txtDialCode.length())
         val phoneNo = dialCode + editTextMobileNo.text.toString()
         account = Account()
         account.phoneNo = phoneNo
         account.dialCode = "${dialCode}000"
 
         Log.d(TAG, "Phone Number: ${account.phoneNo}")
-//        val options = PhoneAuthOptions.newBuilder(auth)
-//            .setPhoneNumber(account.phoneNo)
-//            .setTimeout(60L, TimeUnit.SECONDS)
-//            .setActivity(this)
-//            .setCallbacks(callbacks)
+//        val options = phoneauthoptions.newbuilder(auth)
+//            .setphonenumber(account.phoneno)
+//            .settimeout(60l, timeunit.seconds)
+//            .setactivity(this)
+//            .setcallbacks(callbacks)
 //            .build()
-//        PhoneAuthProvider.verifyPhoneNumber(options)
+//        phoneauthprovider.verifyphonenumber(options)
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber(account.phoneNo, 60, TimeUnit.SECONDS, this, callbacks)
 
@@ -150,8 +154,8 @@ class NumberVerificationActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         override fun onCodeSent(
-            verificationId: String,
-            token: PhoneAuthProvider.ForceResendingToken
+                verificationId: String,
+                token: PhoneAuthProvider.ForceResendingToken
         ) {
             Log.d(TAG, "onCodeSent:$verificationId")
             materialProgress.dismiss()
@@ -166,8 +170,8 @@ class NumberVerificationActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun requestHint() {
         val hintRequest = HintRequest.Builder()
-            .setPhoneNumberIdentifierSupported(true)
-            .build()
+                .setPhoneNumberIdentifierSupported(true)
+                .build()
         val credentialsClient = Credentials.getClient(this)
         val intent = credentialsClient.getHintPickerIntent(hintRequest)
         startIntentSenderForResult(intent.intentSender, CREDENTIAL_PICKER_REQUEST, null, 0, 0, 0)
@@ -182,8 +186,8 @@ class NumberVerificationActivity : AppCompatActivity(), View.OnClickListener {
                     phoneNo = credential.id
                     val number: Phonenumber.PhoneNumber = ContactLoader.parseNo(this, credential.id)
                     Log.d(
-                        "numberLogs",
-                        "Dial Code: ${number.countryCode}, Phone Number: ${number.nationalNumber}"
+                            "numberLogs",
+                            "Dial Code: ${number.countryCode}, Phone Number: ${number.nationalNumber}"
                     )
                     setCountry("+${number.countryCode}")
                     editTextMobileNo.setText(number.nationalNumber.toString())
@@ -195,7 +199,7 @@ class NumberVerificationActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btnClosePicker -> {
-                countryPickerSheet?.run {
+                countryPickerSheet ?.run {
                     if (state == BottomSheetBehavior.STATE_EXPANDED) {
                         state = BottomSheetBehavior.STATE_COLLAPSED
                     }
@@ -217,22 +221,22 @@ class NumberVerificationActivity : AppCompatActivity(), View.OnClickListener {
 
             R.id.textViewResendCode -> {
                 PhoneAuthProvider
-                    .getInstance()
-                    .verifyPhoneNumber(
-                        account.phoneNo,
-                        60,
-                        TimeUnit.SECONDS,
-                        this,
-                        callbacks,
-                        resendToken
-                    )
-                toast("Code sent again")
+                        .getInstance()
+                        .verifyPhoneNumber(
+                                account.phoneNo,
+                                60,
+                                TimeUnit.SECONDS,
+                                this,
+                                callbacks,
+                                resendToken
+                        )
+                toast(getString(R.string.send_code_again))
                 textViewResendCode.isEnabled = false
                 textViewResendCode.setTextColor(
-                    ContextCompat.getColor(
-                        this@NumberVerificationActivity,
-                        R.color.colorGray
-                    )
+                        ContextCompat.getColor(
+                                this@NumberVerificationActivity,
+                                R.color.colorGray
+                        )
                 )
             }
         }
@@ -274,12 +278,12 @@ class NumberVerificationActivity : AppCompatActivity(), View.OnClickListener {
             override fun onFinish() {
                 countDownTimer!!.cancel()
                 textViewResendCode.isEnabled = true
-                textViewResendCode.text = "Resend code"
+                textViewResendCode.text = getString(R.string.resend_code_in)
                 textViewResendCode.setTextColor(
-                    ContextCompat.getColor(
-                        this@NumberVerificationActivity,
-                        R.color.colorPrimary
-                    )
+                        ContextCompat.getColor(
+                                this@NumberVerificationActivity,
+                                R.color.colorPrimary
+                        )
                 )
             }
         }.start()
@@ -293,7 +297,7 @@ class NumberVerificationActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun verifyPhoneNo(input: String) {
         val dialCode = txtDialCode.text.toString()
-            .substring(txtDialCode.text.indexOf("+"), txtDialCode.length())
+                .substring(txtDialCode.text.indexOf("+"), txtDialCode.length())
         btnCont.isEnabled = verifyPhoneNo(dialCode, input)
 
     }

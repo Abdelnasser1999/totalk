@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent"
+    android:background="@color/colorDayNight"
     tools:context=".countrypicker.CountryPickerFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -55,7 +55,7 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/country"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorPrimaryText"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

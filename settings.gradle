@@ -1,2 +1,3 @@
+include ':sinch-android-rtc-3.17.5'
 include ':nativetemplates'
-include ':app', ':sinch-android-rtc-3.17.4'
+include ':app'

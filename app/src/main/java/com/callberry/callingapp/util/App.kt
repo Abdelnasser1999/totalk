@@ -4,16 +4,11 @@ import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.os.StrictMode
 import androidx.core.app.NotificationCompat
 import com.callberry.callingapp.R
 import com.callberry.callingapp.admob.AdHelper
 import com.callberry.callingapp.ui.activity.CallScreenActivity
-import com.callberry.callingapp.ui.activity.MainActivity
 import com.callberry.callingapp.worker.WorkerUtil
-import com.sinch.verification.core.auth.AppKeyAuthorizationMethod
-import com.sinch.verification.core.config.general.GlobalConfig
-import com.sinch.verification.core.config.general.SinchGlobalConfig
 import io.paperdb.Paper
 
 
@@ -36,6 +31,8 @@ class App : Application() {
         if (SharedPrefUtil.getBoolean(Constants.IS_SETUP_COMPLETE, false)) {
             startSync()
         }
+
+
 
     }
 

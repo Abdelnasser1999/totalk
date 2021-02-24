@@ -25,9 +25,9 @@ class ContactViewModel(val app: Application) : AndroidViewModel(app) {
     fun contacts(): LiveData<List<Contact>> = contacts
 
     fun getContactsByPhoneNo(
-        phoneNo: String,
-        dialCode: String,
-        callback: (contact: Contact) -> Unit
+            phoneNo: String,
+            dialCode: String,
+            callback: (contact: Contact) -> Unit
     ) {
         CoroutineScope(IO).launch {
             var contact = contactDao.getContactByPhoneNo(phoneNo)
@@ -68,7 +68,7 @@ class ContactViewModel(val app: Application) : AndroidViewModel(app) {
     companion object {
         fun getInstance(activity: Activity): ContactViewModel {
             return ViewModelProvider.AndroidViewModelFactory(activity.application)
-                .create(ContactViewModel::class.java)
+                    .create(ContactViewModel::class.java)
         }
     }
 

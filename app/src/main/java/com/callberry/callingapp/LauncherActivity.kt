@@ -26,8 +26,8 @@ class LauncherActivity : AppCompatActivity() {
 
         val sinch = PreferenceUtil.getSinchCred()
         Log.d(
-            tag,
-            "Sinch: ${sinch.appKey}, ${sinch.appSecret}, ${sinch.environment}, ${sinch.userId}"
+                tag,
+                "Sinch: ${sinch.appKey}, ${sinch.appSecret}, ${sinch.environment}, ${sinch.userId}"
         )
 
         for (credits in PreferenceUtil.getRemoteCredits()) {
@@ -36,14 +36,14 @@ class LauncherActivity : AppCompatActivity() {
 
         val facebookAd = PreferenceUtil.getFacebookAd()
         Log.d(
-            tag,
-            "Facebook: ${facebookAd.fbBannerAd}, ${facebookAd.fbInterstitialAd}, ${facebookAd.fbRewardedAd}"
+                tag,
+                "Facebook: ${facebookAd.fbBannerAd}, ${facebookAd.fbInterstitialAd}, ${facebookAd.fbRewardedAd}"
         )
 
         val admob = PreferenceUtil.getGoogleAdmob()
         Log.d(
-            tag,
-            "Admob: ${admob.appId}, ${admob.inersitialId}, ${admob.bannerId}, ${admob.rewardedId}, ${admob.bannerId}"
+                tag,
+                "Admob: ${admob.appId}, ${admob.inersitialId}, ${admob.bannerId}, ${admob.rewardedId}, ${admob.bannerId}"
         )
 
 

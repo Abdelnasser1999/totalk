@@ -60,4 +60,9 @@
     <color name="colorAmberBG">#FFECB3</color>
     <color name="colorBrown">#5D4037</color>
     <color name="colorBrownBG">#D7CCC8</color>
+    <color name="colorTab">#2962FF</color>
+    <color name="bgRippleBackground">#FFFFFF</color>
+    <color name="colorCongrats">#8C489F</color>
+    <color name="colorDayNight">#FFFFFF</color>
+    <color name="colorBlackWhite">#FFFFFF</color>
 </resources>

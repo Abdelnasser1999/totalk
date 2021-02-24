@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/bottomSelectCountry"
-    app:behavior_hideable="true"
-    app:behavior_peekHeight="0dp"
+    app:behavior_hideable="false"
+    app:behavior_peekHeight="80dp"
     app:layout_behavior="@string/bottom_sheet_behavior"
     android:background="@color/colorWhite">
 
@@ -78,6 +78,4 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

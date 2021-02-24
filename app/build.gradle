@@ -110,23 +110,27 @@ dependencies {
     /* Permissions */
     implementation 'com.nabinbhandari.android:permissions:3.8'
     /* Firebase BOM */
-    implementation platform('com.google.firebase:firebase-bom:26.1.0')
+  //  implementation platform('com.google.firebase:firebase-bom:26.1.0')
     /* Ipapi GeoLocation*/
     implementation 'com.github.seventhmoon:ipapi-retrofit:1.5.0'
-    implementation project(path: ':sinch-android-rtc-3.17.4')
+    implementation project(path: ':sinch-android-rtc-3.17.5')
     implementation 'com.maxmind.geoip2:geoip2:2.14.0'
     implementation 'io.paperdb:paperdb:2.7.1'
 //     Sinch Phone number verification
-    implementation 'com.sinch.android.sdk.verification:verification-sms:2.0.0'
+    //implementation 'com.sinch.android.sdk.verification:verification-sms:2.0.0'
 //    implementation 'com.chaos.view:pinview:1.4.4'
     implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.1.2'
     implementation 'androidx.browser:browser:1.0.0'
 //    implementation 'com.google.firebase:firebase-crashlytics:17.2.2'
 //    implementation 'com.google.firebase:firebase-analytics:17.6.0'
-    implementation 'com.google.firebase:firebase-crashlytics'
-    implementation 'com.google.firebase:firebase-analytics'
+    //implementation 'com.google.firebase:firebase-crashlytics'
+    //implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.android.gms:play-services-ads:18.3.0'
-
+    //Google play in app purchases
+    implementation 'com.anjlab.android.iab.v3:library:1.0.44'
+    //Auth google consent Api
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    implementation 'com.google.android.gms:play-services-auth-api-phone:17.4.0'
 
 
 }

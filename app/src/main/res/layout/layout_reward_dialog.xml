@@ -14,7 +14,7 @@
             android:id="@+id/textViewCongrats"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="#8C489F"
+            android:background="@color/colorCongrats"
             android:gravity="center"
             android:padding="22dp"
             android:text="@string/congrats"

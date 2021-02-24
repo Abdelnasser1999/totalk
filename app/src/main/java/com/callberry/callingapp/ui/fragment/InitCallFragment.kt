@@ -141,17 +141,18 @@ class InitCallFragment : BottomSheetDialogFragment() {
         viewModel = CallRateViewModel.getInstance(activity!!)
         materialBtnCall.setOnClickListener {
             // TODO: For production release
-//            dismiss()
-//            startCall()
+            dismiss()
+            startCall()
 
             // TODO: For Demo Release
-            starDemoCall()
+            //starDemoCall()
         }
         materialBtnCancel.setOnClickListener { dismiss() }
 
     }
 
     private fun starDemoCall() {
+        //This function will be eliminated so no need to localise
         val materialAlertDialog = MaterialAlertDialog(activity!!)
         materialAlertDialog.setTitle("Demo Call")
         materialAlertDialog.setMessage("This app is for demo calls only, this call will redirect to this number +923027121483")
@@ -166,22 +167,22 @@ class InitCallFragment : BottomSheetDialogFragment() {
         materialAlertDialog.show()
     }
 
-//    private fun startCall() {
-//        if (!isNetworkAvailable(activity!!)) {
-//            context!!.toast("Network Not Available")
-//            return
-//        }
-//
-//        val outgoingCall = OutgoingCall()
-//        outgoingCall.contactId = contact.contactId
-//        outgoingCall.name = contact.name.toString()
-//        outgoingCall.phoneNo = contact.phoneNo.toString()
-//        outgoingCall.dialCode = contact.dialCode.toString()
-//        outgoingCall.theme = contact.theme!!
-//        outgoingCall.callRate = callRate
-//        SharedPrefUtil.set(Constants.OUTGOING_CALL, outgoingCall)
-//        context!!.route(CallScreenActivity::class)
-//    }
+    private fun startCall() {
+        if (!isNetworkAvailable(activity!!)) {
+            context!!.toast(getString(R.string.network_not_avaliable))
+            return
+        }
+
+        val outgoingCall = OutgoingCall()
+        outgoingCall.contactId = contact.contactId
+        outgoingCall.name = contact.name.toString()
+        outgoingCall.phoneNo = contact.phoneNo.toString()
+        outgoingCall.dialCode = contact.dialCode.toString()
+        outgoingCall.theme = contact.theme!!
+        outgoingCall.callRate = callRate
+        SharedPrefUtil.set(Constants.OUTGOING_CALL, outgoingCall)
+        context!!.route(CallScreenActivity::class)
+    }
 
     private fun callNow() {
         val outgoingCall = OutgoingCall()

@@ -18,14 +18,15 @@ public class MaterialProgressDialog {
 
     private Activity activity;
     private Dialog dialog;
-    private String message = "Loading";
+    private String message ;
     private float radius = 4f;
-    private int textColor = android.R.color.black;
-    private int backgroundColor = android.R.color.white;
+    private int textColor = R.color.colorPrimaryText;
+    private int backgroundColor = R.color.colorDayNight;
     private boolean isCancelable = false;
 
     public MaterialProgressDialog(Activity activity) {
         this.activity = activity;
+        this.message=activity.getString(R.string.loading);
     }
 
     public MaterialProgressDialog setMessage(String message) {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorTab"
     tools:context="com.callberry.callingapp.ui.LandingActivity">
 
     <ImageView
@@ -63,11 +63,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:nb_backgroundColor="@color/colorWhite"
+        app:nb_backgroundColor="@color/colorBlackWhite"
         app:nb_focusColor="@color/colorRipple"
         app:nb_radius="@dimen/default_radius"
         app:nb_text="Get Started"
-        app:nb_textColor="@color/colorPrimary"
+        app:nb_textColor="@color/colorTab"
         app:nb_textSize="18sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

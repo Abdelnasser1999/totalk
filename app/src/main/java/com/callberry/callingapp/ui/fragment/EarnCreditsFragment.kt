@@ -51,6 +51,7 @@ class EarnCreditsFragment : Fragment(R.layout.fragment_earn_credits) {
 //        listPackages.layoutManager =
 //            LinearLayoutManager(context!!, LinearLayoutManager.HORIZONTAL, false)
 //        listPackages.adapter = adapter
+
     }
 
     private fun initBonus() {

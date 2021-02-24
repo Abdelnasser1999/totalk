@@ -7,6 +7,7 @@ import android.database.Cursor
 import android.net.Uri
 import android.provider.ContactsContract
 import android.telephony.PhoneNumberUtils
+import android.util.Log
 import com.callberry.callingapp.model.Contact
 import com.callberry.callingapp.database.AppDatabase
 import com.callberry.callingapp.util.PhoneUtils
@@ -21,6 +22,7 @@ class ContactLoader {
 
         @JvmStatic
         suspend fun syncContact(context: Context, callback: (isComplete: Boolean, msg: String) -> Unit) {
+
             val cursor = cursor(context)
             if (cursor == null) {
                 callback.invoke(false, "Failed to Sync Contact")
@@ -39,14 +41,15 @@ class ContactLoader {
                 val id: Long = getLong(cursor, ContactsContract.Contacts._ID)
                 val cursorInfo = cursorInfo(context, id)
                 val person: Uri =
-                    ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, id)
+                        ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, id)
                 val displayPic: Uri = Uri.withAppendedPath(
-                    person,
-                    ContactsContract.Contacts.Photo.CONTENT_DIRECTORY
+                        person,
+                        ContactsContract.Contacts.Photo.CONTENT_DIRECTORY
                 )
                 while (cursorInfo!!.moveToNext()) {
+
                     var phoneNo =
-                        getString(cursorInfo, ContactsContract.CommonDataKinds.Phone.NUMBER)
+                            getString(cursorInfo, ContactsContract.CommonDataKinds.Phone.NUMBER)
                     phoneNo = formatWithPlus(phoneNo)
                     if (PhoneNumberUtils.isGlobalPhoneNumber(phoneNo)) {
                         if (phoneNoList.indexOf(phoneNo) == -1) {
@@ -67,7 +70,6 @@ class ContactLoader {
                 cursorInfo.close()
             }
             cursor.close()
-
             callback.invoke(true, "Contact Loaded")
         }
 
@@ -89,8 +91,8 @@ class ContactLoader {
 
         private fun format(context: Context, number: Phonenumber.PhoneNumber): String {
             return phoneUtil(context)!!.format(
-                number,
-                PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL
+                    number,
+                    PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL
             )
         }
 
@@ -105,21 +107,21 @@ class ContactLoader {
 
         private fun cursorInfo(context: Context, id: Long): Cursor? {
             return resolver(context).query(
-                ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                null,
-                ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
-                arrayOf(id.toString()),
-                null
+                    ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                    null,
+                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
+                    arrayOf(id.toString()),
+                    null
             )
         }
 
         private fun cursor(context: Context): Cursor? {
             return resolver(context).query(
-                ContactsContract.Contacts.CONTENT_URI,
-                null,
-                null,
-                null,
-                null
+                    ContactsContract.Contacts.CONTENT_URI,
+                    null,
+                    null,
+                    null,
+                    null
             )
         }
 

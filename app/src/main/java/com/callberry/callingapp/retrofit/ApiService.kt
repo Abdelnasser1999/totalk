@@ -1,5 +1,6 @@
 package com.callberry.callingapp.retrofit
 
+import com.callberry.callingapp.model.TimeModel
 import com.callberry.callingapp.model.prefmodel.PreferenceModel
 import com.callberry.callingapp.model.remote.account.RemoteAccounts
 import com.callberry.callingapp.model.remote.callrates.CallRates
@@ -13,20 +14,20 @@ interface ApiService {
     @POST("api/register")
     @FormUrlEncoded
     fun login(
-        @Field("phone") phoneNo: String,
-        @Field("dial_code") dialCode: String,
-        @Field("refer_code") referralCode: String
+            @Field("phone") phoneNo: String,
+            @Field("dial_code") dialCode: String,
+            @Field("refer_code") referralCode: String
     ): Call<RemoteAccounts>
 
     @GET("api/callrates")
     fun getCallRates(
-        @Header("authorization") token: String
+            @Header("authorization") token: String
     ): Call<CallRates>
 
     @GET("api/callrates/{dialCode}")
     fun getCallRateByCode(
-        @Path("dialCode") dialCode: String,
-        @Header("authorization") token: String
+            @Path("dialCode") dialCode: String,
+            @Header("authorization") token: String
     ): Call<CallRates>
 
     @GET("api/setting")
@@ -37,4 +38,7 @@ interface ApiService {
 
     @GET("api/multiApis")
     fun getPreference(@Header("authorization") token: String): Call<PreferenceModel>
+
+    @GET("api/ServerTime")
+    fun getTime(@Header("authorization") token: String): Call<TimeModel>
 }
