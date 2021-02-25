@@ -110,14 +110,11 @@ dependencies {
     /* Permissions */
     implementation 'com.nabinbhandari.android:permissions:3.8'
     /* Firebase BOM */
-  //  implementation platform('com.google.firebase:firebase-bom:26.1.0')
+    //  implementation platform('com.google.firebase:firebase-bom:26.1.0')
     /* Ipapi GeoLocation*/
     implementation 'com.github.seventhmoon:ipapi-retrofit:1.5.0'
-    implementation project(path: ':sinch-android-rtc-3.17.5')
     implementation 'com.maxmind.geoip2:geoip2:2.14.0'
     implementation 'io.paperdb:paperdb:2.7.1'
-//     Sinch Phone number verification
-    //implementation 'com.sinch.android.sdk.verification:verification-sms:2.0.0'
 //    implementation 'com.chaos.view:pinview:1.4.4'
     implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.1.2'
     implementation 'androidx.browser:browser:1.0.0'
@@ -131,6 +128,9 @@ dependencies {
     //Auth google consent Api
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
     implementation 'com.google.android.gms:play-services-auth-api-phone:17.4.0'
-
+    //plivo
+    implementation 'com.plivo.endpoint:endpoint:2.0.19@aar'
+    //Messaging
+    implementation 'com.google.firebase:firebase-messaging:17.3.4'
 
 }

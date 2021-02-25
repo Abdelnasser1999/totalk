@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.plivo.endpoint:endpoint:2.0.19@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/ce047835c30849b3a9dcd5e0737caab6/endpoint-2.0.19/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/ce047835c30849b3a9dcd5e0737caab6/endpoint-2.0.19/res" />
+      <root url="file://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/ce047835c30849b3a9dcd5e0737caab6/endpoint-2.0.19/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/ce047835c30849b3a9dcd5e0737caab6/endpoint-2.0.19/jars/libs/slf4j-api-1.7.25.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,16 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.firebase:firebase-auth:16.0.5@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e522cd9125233288086748e05ce5bcaa/jetified-firebase-auth-16.0.5/res" />
-      <root url="jar://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/babf17a075e2ddfc474231003e3411e7/jetified-firebase-auth-16.0.5/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/babf17a075e2ddfc474231003e3411e7/jetified-firebase-auth-16.0.5/res" />
-      <root url="file://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/babf17a075e2ddfc474231003e3411e7/jetified-firebase-auth-16.0.5/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/c2253e063419f701d8cd873ff4fe5c9d/jetified-firebase-auth-16.0.5/res" />
-      <root url="file://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/c2253e063419f701d8cd873ff4fe5c9d/jetified-firebase-auth-16.0.5/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/c2253e063419f701d8cd873ff4fe5c9d/jetified-firebase-auth-16.0.5/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/f3ab18809d98cc6ba06382c40aa28597/jetified-firebase-auth-16.0.5/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/f3ab18809d98cc6ba06382c40aa28597/jetified-firebase-auth-16.0.5/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/f3ab18809d98cc6ba06382c40aa28597/jetified-firebase-auth-16.0.5/res" />
+      <root url="file://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/f3ab18809d98cc6ba06382c40aa28597/jetified-firebase-auth-16.0.5/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/Downloads/gradle-3.3/caches/modules-2/files-2.1/com.google.firebase/firebase-auth/16.0.5/a52a62631987728ed029b753a4585dae04425b9a/firebase-auth-16.0.5-javadoc.jar!/" />

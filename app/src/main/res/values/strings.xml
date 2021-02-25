@@ -158,4 +158,8 @@
     <string name="clear_number">Clear Number</string>
     <string name="network_not_avaliable">Network Not Available</string>
     <string name="send_code_again">Code sent again</string>
+    <string name="login_failed">Login Failed</string>
+    <string name="dtmf_received">DTMF rx %s</string>
+    <string name="reject">Reject</string>
+    <string name="answer">Answer</string>
 </resources>

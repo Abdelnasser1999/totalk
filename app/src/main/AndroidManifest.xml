@@ -8,6 +8,7 @@
         android:required="true" />
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -32,7 +33,6 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
         <activity android:name=".ui.LandingActivity" />
-        <activity android:name=".ui.activity.PlaceCallActivity" />
         <activity
             android:name=".ui.activity.CallScreenActivity"
             android:launchMode="singleTask"
@@ -45,9 +45,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.SearchActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.CallActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.CreditHistoryActivity"
@@ -80,7 +77,6 @@
         </activity>
 
         <service android:name=".service.OutgoingCallService" />
-        <service android:name=".service.CallService" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

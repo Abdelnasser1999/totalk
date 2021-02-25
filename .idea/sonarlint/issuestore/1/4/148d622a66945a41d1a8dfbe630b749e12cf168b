@@ -1,17 +1,17 @@
 
-K
-java:S14811"0Remove this unused "diffSeconds" local variable.(ÅóÅâüÿÿÿÿ
-L
-java:S2696"6Make the enclosing method "static" or remove this set.(®¶Ä†
-C
-java:S14814"-Remove this unused "diffDays" local variable.(Ù©Ï
-R
-java:S18544"<Remove this useless assignment to local variable "diffDays".(Ù©Ï
-Z
-java:S18541"?Remove this useless assignment to local variable "diffSeconds".(ÅóÅâüÿÿÿÿ
-S
-java:S18543"=Remove this useless assignment to local variable "diffHours".(ïÆù¥
 E
-java:S1144/"/Remove this unused private "getMinutes" method.(Ö‘İœ
+java:S11440"/Remove this unused private "getMinutes" method.(Ö‘İœ
+C
+java:S14815"-Remove this unused "diffDays" local variable.(Ù©Ï
+S
+java:S18544"=Remove this useless assignment to local variable "diffHours".(ïÆù¥
+K
+java:S14812"0Remove this unused "diffSeconds" local variable.(ÅóÅâüÿÿÿÿ
+R
+java:S18545"<Remove this useless assignment to local variable "diffDays".(Ù©Ï
+Z
+java:S18542"?Remove this useless assignment to local variable "diffSeconds".(ÅóÅâüÿÿÿÿ
+L
+java:S2696"6Make the enclosing method "static" or remove this set.(®¶Ä†
 D
-java:S14813".Remove this unused "diffHours" local variable.(ïÆù¥
+java:S14814".Remove this unused "diffHours" local variable.(ïÆù¥

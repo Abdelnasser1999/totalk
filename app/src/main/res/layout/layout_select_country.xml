@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/bottomSelectCountry"
-    app:behavior_hideable="false"
-    app:behavior_peekHeight="80dp"
+    app:behavior_hideable="true"
     app:layout_behavior="@string/bottom_sheet_behavior"
     android:background="@color/colorWhite">
 

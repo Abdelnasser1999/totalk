@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.mukeshsolanki:android-otpview-pinview:2.1.2@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/c6384ddb4bb634845bb278a1c2f00cd7/android-otpview-pinview-2.1.2/res" />
       <root url="jar://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/c6384ddb4bb634845bb278a1c2f00cd7/android-otpview-pinview-2.1.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/c6384ddb4bb634845bb278a1c2f00cd7/android-otpview-pinview-2.1.2/res" />
       <root url="file://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/c6384ddb4bb634845bb278a1c2f00cd7/android-otpview-pinview-2.1.2/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
