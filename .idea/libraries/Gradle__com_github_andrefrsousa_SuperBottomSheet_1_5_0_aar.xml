@@ -4,10 +4,14 @@
       <root url="jar://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/b219c4a8ef735fce9475c435954a76b5/SuperBottomSheet-1.5.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/b219c4a8ef735fce9475c435954a76b5/SuperBottomSheet-1.5.0/res" />
       <root url="file://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/b219c4a8ef735fce9475c435954a76b5/SuperBottomSheet-1.5.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b219c4a8ef735fce9475c435954a76b5/SuperBottomSheet-1.5.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b219c4a8ef735fce9475c435954a76b5/SuperBottomSheet-1.5.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b219c4a8ef735fce9475c435954a76b5/SuperBottomSheet-1.5.0/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/Downloads/gradle-3.3/caches/modules-2/files-2.1/com.github.andrefrsousa/SuperBottomSheet/1.5.0/65dbe9d11c34033708acc977c9980cc5de7d1384/SuperBottomSheet-1.5.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.andrefrsousa/SuperBottomSheet/1.5.0/65dbe9d11c34033708acc977c9980cc5de7d1384/SuperBottomSheet-1.5.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

@@ -17,6 +17,7 @@ import io.paperdb.Paper
 class App : Application() {
 
     lateinit var backend: PlivoBackEnd
+
     override fun onCreate() {
         super.onCreate()
 

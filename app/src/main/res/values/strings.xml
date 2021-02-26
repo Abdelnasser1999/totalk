@@ -83,7 +83,7 @@
     <string name="credit_used">Credit Used</string>
     <string name="connecting">Connecting…</string>
     <string name="call_failed">Call Failed</string>
-    <string name="outgoing_call">Call running…</string>
+    <string name="outgoing_call">Connecting…</string>
     <string name="call_failed_message">Unable to initiate a call, please try again later.</string>
     <string name="call_ended">Call Ended</string>
     <string name="called">Called</string>
@@ -162,4 +162,5 @@
     <string name="dtmf_received">DTMF rx %s</string>
     <string name="reject">Reject</string>
     <string name="answer">Answer</string>
+    <string name="text_ringing">Ringing...</string>
 </resources>

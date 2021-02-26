@@ -1,11 +1,12 @@
 package com.callberry.callingapp.util
 
+import android.util.Log
 import com.callberry.callingapp.model.remote.credits.RemoteCredit
 
 
 class Constants {
     companion object {
-        val IS_HOLD_ON: String="is_hold_on"
+        val IS_HOLD_ON: String = "is_hold_on"
         const val ANSWER_ACTION = "ANSWER_ACTION"
         const val REJECT_ACTION = "REJECT_ACTION"
         const val LAUNCH_ACTION = "LAUNCH_ACTION"
@@ -69,6 +70,12 @@ class Constants {
 
         const val CALL_RATES_LOGS = "callRatesLogs"
         const val ERROR_LOGS = "errorLogs"
+        const val LOGS_CALLS = "callLogs"
+
+        @JvmStatic
+        fun callLogs(msg: String) {
+            Log.d(LOGS_CALLS, msg)
+        }
 
 
     }

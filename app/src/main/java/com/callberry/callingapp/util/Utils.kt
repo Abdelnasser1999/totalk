@@ -37,10 +37,10 @@ class Utils {
         }
 
         @JvmStatic
-        fun getEstimatedDurationInSeconds(callRate: Float): Int {
+        fun getEstimatedDurationInSeconds(callRate: Float): Long {
             val rate = callRate / 60
             val balance = getBalance()
-            return (balance / rate).toInt()
+            return (balance / rate).toLong()
         }
 
         @JvmStatic

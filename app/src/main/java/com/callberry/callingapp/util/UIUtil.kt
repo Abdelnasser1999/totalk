@@ -242,7 +242,7 @@ class UIUtil {
             return formatCallDuration(callDurationInSecond)
         }
 
-        fun formatTimestamp(totalSeconds: Int): String? {
+        fun formatTimestamp(totalSeconds: Long): String? {
             val minutes = totalSeconds / 60.toLong()
             val seconds = totalSeconds % 60.toLong()
             return String.format(Locale.US, "%02d:%02d", minutes, seconds)

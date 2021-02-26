@@ -39,34 +39,24 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 
-class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
-    PlivoBackEnd.BackendListener {
+class CallScreenActivity : AppCompatActivity(), CallStateChangeListener {
 
     private lateinit var outgoingCall: OutgoingCall
     private var outgoingCallService: OutgoingCallService? = null
-
-    // private var call: Call? = null
     private var callTimer = Timer()
-
     private val callDurationTask = UpdateCallDurationTask()
-    private var durationInSec: Int = 0
+    private var durationInSec: Long = 0
     private var sensorEventListener: SensorEventListener? = null
     private var wakeLock: PowerManager.WakeLock? = null
     private var sensorManager: SensorManager? = null
     private var muteAudioManager: AudioManager? = null
     private var speakerAudioManager: AudioManager? = null
-
     private var tick: Long = 0
-
     private val actionBar: ActionBar? = null
-
     private var isSpeakerOn = false
     private var isHoldOn = false
     private var isMuteOn = false
-
-    private var callData: Any? = null
-
-    private var vibrator: Vibrator? = null
+    private var callData: Outgoing? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,41 +64,12 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
 
         outgoingCall =
             SharedPrefUtil.get(Constants.OUTGOING_CALL, OutgoingCall::class) as OutgoingCall
-        vibrator = this.getSystemService(VIBRATOR_SERVICE) as Vibrator
-        init()
         initViews()
         initWakeSensor()
         bindService()
 
     }
 
-    private fun init() {
-        registerBackendListener()
-        loginWithToken()
-    }
-
-    private fun registerBackendListener() {
-        (application as App).backend()!!.setListener(this)
-        UtilsPlivo.backendListener = this
-    }
-
-    private fun loginWithToken() {
-        if (UtilsPlivo.loggedinStatus) {
-            //updateUI(PlivoBackEnd.STATE.IDLE, null)
-            callData = UtilsPlivo.incoming
-
-        } else {
-
-            FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener(
-                this
-            ) { instanceIdResult ->
-                (application as App).backend()!!.login(
-                    instanceIdResult.token
-                )
-            }
-
-        }
-    }
 
     private fun showOutCallUI(state: PlivoBackEnd.STATE, outgoing: Outgoing) {
         Log.d("TESTTAG", "showOutCallUI")
@@ -124,7 +85,7 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
                 callerState.text = Constants.RINGING_LABEL
             }
             PlivoBackEnd.STATE.ANSWERED -> {
-                outgoingCallService!!.onCallStarted()
+//                outgoingCallService!!.onCallStarted()
                 imgViewHold.isEnabled = true
                 startTimer()
             }
@@ -147,7 +108,7 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
         }
     }
 
-    private fun updateUI(state: PlivoBackEnd.STATE, data: Any?) {
+    private fun updateUI(state: PlivoBackEnd.STATE, data: Outgoing?) {
         callData = data
         if (state.equals(PlivoBackEnd.STATE.REJECTED) || state.equals(PlivoBackEnd.STATE.HANGUP) || state.equals(
                 PlivoBackEnd.STATE.INVALID
@@ -216,18 +177,17 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
     }
 
     private fun onServiceConnectionSuccessful() {
-        outgoingCallService!!.loginAccount()
-        outgoingCallService!!.setCallStateChangeListener(this)
+
     }
 
     override fun onStateChange(state: LocalCallState) {
-        if (state == LocalCallState.CLIENT_FAILED) {
-            txtViewCallDuration.text = getString(R.string.call_failed)
-            txtViewCallDuration.setTextColor(ContextCompat.getColor(this, R.color.colorRed))
-            txtViewMessage.text = getString(R.string.call_failed_message)
-            exchangeView(layoutDetail, layoutCalling)
-            return
-        }
+//        if (state == LocalCallState.CLIENT_FAILED) {
+//            txtViewCallDuration.text = getString(R.string.call_failed)
+//            txtViewCallDuration.setTextColor(ContextCompat.getColor(this, R.color.colorRed))
+//            txtViewMessage.text = getString(R.string.call_failed_message)
+//            exchangeView(layoutDetail, layoutCalling)
+//            return
+//        }
 
         /* if (state == LocalCallState.CALL_ESTABLISHED) {
              toast("Call Started")
@@ -288,7 +248,7 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
 
         private fun updateCallDuration() {
             if (SharedPrefUtil.getBoolean(Constants.IS_CALL_IN_PROGRESS, false)) {
-                durationInSec = tick.toInt()
+                durationInSec = outgoingCallService!!.getTimeInSeconds()
                 txtViewCallDuration.text = UIUtil.formatTimestamp(durationInSec)
             }
         }
@@ -405,7 +365,7 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
     }*/
     }
 
-    fun muteCall() {
+    private fun muteCall() {
         if (callData != null) {
             if (callData is Outgoing) {
                 (callData as Outgoing).mute()
@@ -413,7 +373,7 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
         }
     }
 
-    fun unMuteCall() {
+    private fun unMuteCall() {
         if (callData != null) {
             if (callData is Outgoing) {
                 (callData as Outgoing).unmute()
@@ -453,7 +413,6 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
         val serviceIntent = Intent(this, OutgoingCallService::class.java)
         serviceIntent.action = Constants.STARTFOREGROUND_ACTION
         ContextCompat.startForegroundService(this, serviceIntent)
-
         Intent(this, OutgoingCallService::class.java).also { intent ->
             bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
         }
@@ -463,17 +422,14 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
         override fun onServiceConnected(className: ComponentName, iBinder: IBinder) {
             val binder = iBinder as OutgoingCallService.CallBinder
             outgoingCallService = binder.service
-            onServiceConnectionSuccessful()
+            outgoingCallService?.setCallStateChangeListener(this@CallScreenActivity)
+            outgoingCallService?.loginAccount()
+
         }
 
         override fun onServiceDisconnected(arg0: ComponentName) {
-            onServiceConnectionFailed()
+            terminateCall()
         }
-    }
-
-    private fun onServiceConnectionFailed() {
-        toast("Service Failed")
-        terminateCall()
     }
 
     private fun terminateCall() {
@@ -505,14 +461,20 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
     override fun onDestroy() {
         wakeLock?.let {
             if (it.isHeld) {
-                wakeLock!!.release()
+                wakeLock?.release()
             }
         }
-//        sensorManager!!.unregisterListener(sensorEventListener)
+        sensorManager?.unregisterListener(sensorEventListener)
         SharedPrefUtil.setBoolean(Constants.IS_SPREAKER_ON, false)
         SharedPrefUtil.setBoolean(Constants.IS_MUTE_ON, false)
         super.onDestroy()
 
+    }
+
+    fun forceHungUp() {
+        val serviceIntent = Intent(this, OutgoingCallService::class.java)
+        serviceIntent.action = Constants.STOPFOREGROUND_ACTION
+        ContextCompat.startForegroundService(this, serviceIntent)
     }
 
     private fun setActionView(imgView: ImageView, active: Boolean) {
@@ -525,38 +487,5 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
         }
     }
 
-    override fun onLogin(success: Boolean) {
-        runOnUiThread {
-            if (success) {
-                updateUI(PlivoBackEnd.STATE.RINGING, null)
-                makeCall(textViewPhoneNo.text.toString())
-            } else {
-                Toast.makeText(
-                    this,
-                    R.string.login_failed,
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
-    }
-
-    override fun onLogout() {
-    }
-
-    override fun onIncomingCall(data: Incoming?, callState: PlivoBackEnd.STATE?) {
-    }
-
-    override fun onOutgoingCall(data: Outgoing?, callState: PlivoBackEnd.STATE?) {
-        Log.d("TESTTAG", "onOutgoingCall")
-        runOnUiThread { updateUI(callState!!, data) }
-    }
-
-    override fun onIncomingDigit(digit: String?) {
-
-    }
-
-    override fun mediaMetrics(messageTemplate: HashMap<*, *>?) {
-
-    }
 
 }

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/bottomSelectCountry"
     app:behavior_hideable="true"
+    app:behavior_peekHeight="0dp"
     app:layout_behavior="@string/bottom_sheet_behavior"
     android:background="@color/colorWhite">
 
@@ -22,9 +23,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="15dp">
+            android:layout_height="wrap_content">
 
             <com.ornach.nobobutton.NoboButton
                 android:id="@+id/btnClosePicker"
