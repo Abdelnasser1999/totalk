@@ -105,16 +105,45 @@
                 android:id="@+id/imgViewSpeaker"
                 android:layout_width="0dp"
                 android:layout_height="80dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/bg_non_active"
                 android:padding="24dp"
                 android:tint="@color/colorPrimary"
                 app:layout_constraintBottom_toTopOf="@+id/btnEndCall"
-                app:layout_constraintEnd_toStartOf="@+id/imgViewMute"
+                app:layout_constraintEnd_toStartOf="@+id/imgViewHold"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/btnEndCall"
                 app:srcCompat="@drawable/ic_speaker" />
+
+            <ImageView
+                android:id="@+id/imgViewHold"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:background="@drawable/bg_non_active"
+                android:padding="24dp"
+                android:tint="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@+id/imgViewSpeaker"
+                app:layout_constraintEnd_toStartOf="@+id/imgViewMute"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imgViewSpeaker"
+                app:layout_constraintTop_toTopOf="@+id/imgViewSpeaker"
+                app:srcCompat="@drawable/ic_hold" />
+
+            <ImageView
+                android:id="@+id/imgViewMute"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/bg_non_active"
+                android:padding="24dp"
+                android:tint="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@+id/imgViewHold"
+                app:layout_constraintEnd_toEndOf="@+id/btnEndCall"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imgViewHold"
+                app:layout_constraintTop_toTopOf="@+id/imgViewSpeaker"
+                app:srcCompat="@drawable/ic_mute" />
 
             <com.ornach.nobobutton.NoboButton
                 android:id="@+id/btnEndCall"
@@ -132,21 +161,6 @@
                 app:nb_drawableResource="@drawable/ic_end_call"
                 app:nb_focusColor="@color/colorPrimaryLight"
                 app:nb_radius="@dimen/default_radius" />
-
-            <ImageView
-                android:id="@+id/imgViewMute"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/bg_non_active"
-                android:padding="24dp"
-                android:tint="@color/colorPrimary"
-                app:layout_constraintBottom_toBottomOf="@+id/imgViewSpeaker"
-                app:layout_constraintEnd_toEndOf="@+id/btnEndCall"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/imgViewSpeaker"
-                app:layout_constraintTop_toTopOf="@+id/imgViewSpeaker"
-                app:srcCompat="@drawable/ic_mute" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -24,11 +24,11 @@ class UIUtil {
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.window!!.decorView.setBackgroundResource(android.R.color.transparent)
             dialog.window!!.setLayout(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
             )
             val inflater =
-                    activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+                activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val contentView = inflater.inflate(R.layout.layout_reward_dialog, null);
             val txtRewardMsg: TextView = contentView.findViewById(R.id.txtRewardMessage)
             txtRewardMsg.text = message
@@ -43,10 +43,10 @@ class UIUtil {
 
         @JvmStatic
         fun popError(
-                activity: Activity,
-                title: String,
-                message: String,
-                callback: (isTryAgain: Boolean) -> Unit
+            activity: Activity,
+            title: String,
+            message: String,
+            callback: (isTryAgain: Boolean) -> Unit
         ) {
             val materialAlertDialog = MaterialAlertDialog(activity)
             materialAlertDialog.setTitle(title)
@@ -64,9 +64,9 @@ class UIUtil {
 
         @JvmStatic
         fun popErrorClose(
-                activity: Activity,
-                title: String,
-                message: String
+            activity: Activity,
+            title: String,
+            message: String
         ) {
             val materialAlertDialog = MaterialAlertDialog(activity)
             materialAlertDialog.setTitle(title)
@@ -79,9 +79,9 @@ class UIUtil {
 
         @JvmStatic
         fun popNotSupported(
-                activity: Activity,
-                title: String,
-                message: String
+            activity: Activity,
+            title: String,
+            message: String
         ) {
             val materialAlertDialog = MaterialAlertDialog(activity)
             materialAlertDialog.setTitle(title)
@@ -120,17 +120,17 @@ class UIUtil {
         @JvmStatic
         fun getTheme(): String {
             val themes = arrayListOf<String>(
-                    "${R.color.colorRed}, ${R.color.colorRedBG}",
-                    "${R.color.colorPink}, ${R.color.colorPinkBG}",
-                    "${R.color.colorPurple}, ${R.color.colorPurpleBG}",
-                    "${R.color.colorDeepPurple}, ${R.color.colorDeepPurpleBG}",
-                    "${R.color.colorIndigo}, ${R.color.colorIndigoBG}",
-                    "${R.color.colorCyan}, ${R.color.colorCyanBG}",
-                    "${R.color.colorTeal}, ${R.color.colorTealBG}",
-                    "${R.color.colorGreenDark}, ${R.color.colorGreenDarkBG}",
-                    "${R.color.colorGreenLight}, ${R.color.colorGreenLightBG}",
-                    "${R.color.colorAmber}, ${R.color.colorAmberBG}",
-                    "${R.color.colorBrown}, ${R.color.colorBrownBG}"
+                "${R.color.colorRed}, ${R.color.colorRedBG}",
+                "${R.color.colorPink}, ${R.color.colorPinkBG}",
+                "${R.color.colorPurple}, ${R.color.colorPurpleBG}",
+                "${R.color.colorDeepPurple}, ${R.color.colorDeepPurpleBG}",
+                "${R.color.colorIndigo}, ${R.color.colorIndigoBG}",
+                "${R.color.colorCyan}, ${R.color.colorCyanBG}",
+                "${R.color.colorTeal}, ${R.color.colorTealBG}",
+                "${R.color.colorGreenDark}, ${R.color.colorGreenDarkBG}",
+                "${R.color.colorGreenLight}, ${R.color.colorGreenLightBG}",
+                "${R.color.colorAmber}, ${R.color.colorAmberBG}",
+                "${R.color.colorBrown}, ${R.color.colorBrownBG}"
             )
 
             val id = Random().nextInt(themes.size - 0) + 0;
@@ -139,10 +139,10 @@ class UIUtil {
 
         @JvmStatic
         fun setIcon(
-                context: Context,
-                view: TextView,
-                name: String,
-                iconTheme: String = getTheme()
+            context: Context,
+            view: TextView,
+            name: String,
+            iconTheme: String = getTheme()
         ) {
             view.text = getIcon(name)
             val theme: List<String> = iconTheme.split(", ")

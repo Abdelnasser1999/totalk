@@ -5,6 +5,7 @@ import com.callberry.callingapp.model.remote.credits.RemoteCredit
 
 class Constants {
     companion object {
+        val IS_HOLD_ON: String="is_hold_on"
         const val ANSWER_ACTION = "ANSWER_ACTION"
         const val REJECT_ACTION = "REJECT_ACTION"
         const val LAUNCH_ACTION = "LAUNCH_ACTION"

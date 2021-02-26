@@ -18,14 +18,20 @@ import com.callberry.callingapp.database.AppDatabase
 import com.callberry.callingapp.model.Credit
 import com.callberry.callingapp.model.OutgoingCall
 import com.callberry.callingapp.model.Recent
+import com.callberry.callingapp.plivo.PlivoBackEnd
+import com.callberry.callingapp.plivo.UtilsPlivo
 import com.callberry.callingapp.ui.activity.CallScreenActivity
 import com.callberry.callingapp.util.*
+import com.google.firebase.iid.FirebaseInstanceId
+import com.plivo.endpoint.Incoming
+import com.plivo.endpoint.Outgoing
+import kotlinx.android.synthetic.main.activity_call_screen.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
 
-class OutgoingCallService : Service() {
+class OutgoingCallService : Service(), PlivoBackEnd.BackendListener {
 
     private var callStateChangeListener: CallStateChangeListener? = null
     private var isCallStarted = false
@@ -35,10 +41,9 @@ class OutgoingCallService : Service() {
     private var estimatedCallDuration: Int = 10
     private lateinit var callingTone: MediaPlayer
     private lateinit var mAudioManager: AudioManager
-
+    private var callData: Any? = null
     override fun onCreate() {
         super.onCreate()
-
         outgoingCall =
             SharedPrefUtil.get(Constants.OUTGOING_CALL, OutgoingCall::class) as OutgoingCall
         initCallerTune()
@@ -61,14 +66,26 @@ class OutgoingCallService : Service() {
     }
 
     fun loginAccount() {
+        if (UtilsPlivo.loggedinStatus) {
+            //updateUI(PlivoBackEnd.STATE.IDLE, null)
+            callData = UtilsPlivo.incoming
+
+        } else {
+            FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener { instanceIdResult ->
+                (application as App).backend()!!.login(
+                    instanceIdResult.token
+                )
+            }
+
+        }
 
     }
 
-    fun onClientStarted(){
+    fun onClientStarted() {
 
     }
 
-    fun loginFailed(){
+    fun loginFailed() {
         callingTone.stop()
         if (callingTone.isPlaying) callingTone.stop()
         if (callStateChangeListener != null) {
@@ -77,7 +94,7 @@ class OutgoingCallService : Service() {
         }
     }
 
-    fun onCallStarted(){
+    fun onCallStarted() {
         callingTone.stop()
         isCallStarted = true
         estimatedCallDuration = Utils.getEstimatedDurationInSeconds(outgoingCall.callRate)
@@ -87,7 +104,7 @@ class OutgoingCallService : Service() {
         }
     }
 
-    fun onCallEnded(){
+    fun onCallEnded() {
         callingTone.stop()
         if (callStateChangeListener != null) {
             callStateChangeListener!!.onStateChange(LocalCallState.CALL_ENDED)
@@ -118,20 +135,20 @@ class OutgoingCallService : Service() {
         }
     }
 
-   /* override fun onDestroy() {
-        callingTone.stop()
-        if (call != null) {
-            call!!.hangup()
-        }
-        if (sinchClient != null && sinchClient!!.isStarted) {
-            sinchClient!!.stopListeningOnActiveConnection()
-            sinchClient!!.terminateGracefully()
-            sinchClient = null
-        }
-        saveLogs()
-        mAudioManager.mode = AudioManager.MODE_NORMAL
-        super.onDestroy()
-    }*/
+    /* override fun onDestroy() {
+         callingTone.stop()
+         if (call != null) {
+             call!!.hangup()
+         }
+         if (sinchClient != null && sinchClient!!.isStarted) {
+             sinchClient!!.stopListeningOnActiveConnection()
+             sinchClient!!.terminateGracefully()
+             sinchClient = null
+         }
+         saveLogs()
+         mAudioManager.mode = AudioManager.MODE_NORMAL
+         super.onDestroy()
+     }*/
 
     private fun saveLogs() {
         val recentDao = AppDatabase(this).recentDao()
@@ -139,8 +156,8 @@ class OutgoingCallService : Service() {
         var creditsUsed: Float = 0.0F
         var callDuration = "00:00"
         if (isCallStarted) {
-          //  creditsUsed = UIUtil.calculateCredits(call!!.details.duration, outgoingCall.callRate)
-         //   callDuration = UIUtil.formatCallDuration(call!!.details.duration)
+            //  creditsUsed = UIUtil.calculateCredits(call!!.details.duration, outgoingCall.callRate)
+            //   callDuration = UIUtil.formatCallDuration(call!!.details.duration)
         }
 
         val recent = Recent()
@@ -216,6 +233,29 @@ class OutgoingCallService : Service() {
     }
 
     override fun onBind(intent: Intent?): IBinder = CallBinder()
+    override fun onLogin(success: Boolean) {
+
+    }
+
+    override fun onLogout() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onIncomingCall(data: Incoming?, callState: PlivoBackEnd.STATE?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onOutgoingCall(data: Outgoing?, callState: PlivoBackEnd.STATE?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onIncomingDigit(digit: String?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun mediaMetrics(messageTemplate: HashMap<*, *>?) {
+        TODO("Not yet implemented")
+    }
 
 
 }

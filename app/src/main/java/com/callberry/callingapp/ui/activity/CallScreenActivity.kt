@@ -9,7 +9,10 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.media.AudioManager
-import android.os.*
+import android.os.Bundle
+import android.os.IBinder
+import android.os.PowerManager
+import android.os.Vibrator
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
@@ -37,7 +40,7 @@ import java.util.concurrent.TimeUnit
 
 
 class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
-        PlivoBackEnd.BackendListener {
+    PlivoBackEnd.BackendListener {
 
     private lateinit var outgoingCall: OutgoingCall
     private var outgoingCallService: OutgoingCallService? = null
@@ -45,7 +48,7 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
     // private var call: Call? = null
     private var callTimer = Timer()
 
-    //private val callDurationTask = UpdateCallDurationTask()
+    private val callDurationTask = UpdateCallDurationTask()
     private var durationInSec: Int = 0
     private var sensorEventListener: SensorEventListener? = null
     private var wakeLock: PowerManager.WakeLock? = null
@@ -70,12 +73,12 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
         setContentView(R.layout.activity_call_screen)
 
         outgoingCall =
-                SharedPrefUtil.get(Constants.OUTGOING_CALL, OutgoingCall::class) as OutgoingCall
+            SharedPrefUtil.get(Constants.OUTGOING_CALL, OutgoingCall::class) as OutgoingCall
         vibrator = this.getSystemService(VIBRATOR_SERVICE) as Vibrator
         init()
         initViews()
-        // initWakeSensor()
-        // bindService()
+        initWakeSensor()
+        bindService()
 
     }
 
@@ -96,7 +99,13 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
 
         } else {
 
-            FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(this, { instanceIdResult -> (application as App).backend()!!.login(instanceIdResult.getToken()) })
+            FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener(
+                this
+            ) { instanceIdResult ->
+                (application as App).backend()!!.login(
+                    instanceIdResult.token
+                )
+            }
 
         }
     }
@@ -114,8 +123,13 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
                 callerState = findViewById<View>(R.id.txtViewCallDuration) as TextView
                 callerState.text = Constants.RINGING_LABEL
             }
-            PlivoBackEnd.STATE.ANSWERED -> startTimer()
+            PlivoBackEnd.STATE.ANSWERED -> {
+                outgoingCallService!!.onCallStarted()
+                imgViewHold.isEnabled = true
+                startTimer()
+            }
             PlivoBackEnd.STATE.HANGUP, PlivoBackEnd.STATE.REJECTED -> {
+                outgoingCallService!!.onCallEnded()
                 cancelTimer()
                 updateUI(PlivoBackEnd.STATE.IDLE, null)
             }
@@ -135,7 +149,10 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
 
     private fun updateUI(state: PlivoBackEnd.STATE, data: Any?) {
         callData = data
-        if (state.equals(PlivoBackEnd.STATE.REJECTED) || state.equals(PlivoBackEnd.STATE.HANGUP) || state.equals(PlivoBackEnd.STATE.INVALID)) {
+        if (state.equals(PlivoBackEnd.STATE.REJECTED) || state.equals(PlivoBackEnd.STATE.HANGUP) || state.equals(
+                PlivoBackEnd.STATE.INVALID
+            )
+        ) {
             if (data is Outgoing) {
                 Log.d("TESTTAG", "data is Outgoing")
                 showOutCallUI(state, data)
@@ -159,20 +176,20 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
             override fun run() {
                 runOnUiThread {
                     val hours =
-                            TimeUnit.SECONDS.toHours(tick.toLong()).toInt()
+                        TimeUnit.SECONDS.toHours(tick.toLong()).toInt()
                     val minutes = TimeUnit.SECONDS.toMinutes(
-                            TimeUnit.HOURS.toSeconds(hours.toLong()).let { tick -= it; tick })
-                            .toInt()
+                        TimeUnit.HOURS.toSeconds(hours.toLong()).let { tick -= it; tick })
+                        .toInt()
                     val seconds =
-                            (tick - TimeUnit.MINUTES.toSeconds(minutes.toLong())).toInt()
+                        (tick - TimeUnit.MINUTES.toSeconds(minutes.toLong())).toInt()
                     val text = if (hours > 0) java.lang.String.format(
-                            HH_MM_SS,
-                            hours,
-                            minutes,
-                            seconds
+                        HH_MM_SS,
+                        hours,
+                        minutes,
+                        seconds
                     ) else java.lang.String.format(MM_SS, minutes, seconds)
                     val timerTextView =
-                            findViewById<View>(R.id.txtViewCallDuration) as TextView
+                        findViewById<View>(R.id.txtViewCallDuration) as TextView
                     if (timerTextView != null) {
                         timerTextView.visibility = View.VISIBLE
                         timerTextView.text = text
@@ -198,10 +215,10 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
 
     }
 
-    /*private fun onServiceConnectionSuccessful() {
-        outgoingCallService!!.initializeClient()
+    private fun onServiceConnectionSuccessful() {
+        outgoingCallService!!.loginAccount()
         outgoingCallService!!.setCallStateChangeListener(this)
-    }*/
+    }
 
     override fun onStateChange(state: LocalCallState) {
         if (state == LocalCallState.CLIENT_FAILED) {
@@ -225,15 +242,15 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
 
         if (state == LocalCallState.CALL_ENDED) {
             toast("Call Ended")
-            //  callFinished()
+            callFinished()
             return
         }
 
 
     }
 
-    /*private fun callFinished() {
-        call?.let {
+    private fun callFinished() {
+        (callData as Outgoing).hangup().let {
             callDurationTask.cancel()
             callTimer.cancel()
             var totalTime = txtViewCallDuration.text.toString()
@@ -241,7 +258,7 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
                 totalTime = "00:00"
             }
             txtViewCallDuration.text = "${getString(R.string.call_ended)}, $totalTime"
-            val creditUsed = UIUtil.calculateCredits(call!!.details.duration, outgoingCall.callRate)
+            val creditUsed = UIUtil.calculateCredits(tick.toInt(), outgoingCall.callRate)
             txtViewMessage.text = "${getString(R.string.total_credit_used)} $$creditUsed"
             exchangeView(layoutDetail, layoutCalling)
             return@callFinished
@@ -264,20 +281,18 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
 
     }
 
-   private inner class UpdateCallDurationTask : TimerTask() {
-       override fun run() {
-           this@CallScreenActivity.runOnUiThread { updateCallDuration() }
-       }
+    private inner class UpdateCallDurationTask : TimerTask() {
+        override fun run() {
+            this@CallScreenActivity.runOnUiThread { updateCallDuration() }
+        }
 
-       private fun updateCallDuration() {
-           call?.let {
-               if (SharedPrefUtil.getBoolean(Constants.IS_CALL_IN_PROGRESS, false)) {
-                   durationInSec = it.details.duration
-                   txtViewCallDuration.text = UIUtil.formatTimestamp(durationInSec)
-               }
-           }
-       }
-   }*/
+        private fun updateCallDuration() {
+            if (SharedPrefUtil.getBoolean(Constants.IS_CALL_IN_PROGRESS, false)) {
+                durationInSec = tick.toInt()
+                txtViewCallDuration.text = UIUtil.formatTimestamp(durationInSec)
+            }
+        }
+    }
 
     private fun initViews() {
         textViewName.text = outgoingCall.name
@@ -285,6 +300,38 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
         UIUtil.setIcon(this, textViewIcon, outgoingCall.name, outgoingCall.theme)
         btnEndCall.setOnClickListener { terminateCall() }
         materialBtnClose.setOnClickListener { finish() }
+        imgViewHold.isEnabled = false
+        imgViewHold.setOnClickListener { setHoldCall() }
+    }
+
+    private fun setHoldCall() {
+        if (isHoldOn) {
+            isHoldOn = false
+            unHoldCall()
+            SharedPrefUtil.setBoolean(Constants.IS_HOLD_ON, false)
+            setActionView(imgViewHold, false)
+        } else {
+            isHoldOn = true
+            holdCall()
+            SharedPrefUtil.setBoolean(Constants.IS_HOLD_ON, true)
+            setActionView(imgViewHold, true)
+        }
+    }
+
+    fun holdCall() {
+        if (callData != null) {
+            if (callData is Outgoing) {
+                (callData as Outgoing).hold()
+            }
+        }
+    }
+
+    fun unHoldCall() {
+        if (callData != null) {
+            if (callData is Outgoing) {
+                (callData as Outgoing).unhold()
+            }
+        }
     }
 
     private fun updateSpeakerMuteAction() {
@@ -292,11 +339,11 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
         setActionView(imgViewMute, SharedPrefUtil.getBoolean(Constants.IS_MUTE_ON, false))
 
         speakerAudioManager =
-                applicationContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+            applicationContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
         speakerAudioManager!!.mode = AudioManager.MODE_IN_CALL
 
         muteAudioManager =
-                applicationContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+            applicationContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
         muteAudioManager!!.mode = AudioManager.MODE_IN_CALL
 
         imgViewSpeaker.setOnClickListener {
@@ -376,10 +423,10 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
 
     private fun initWakeSensor() {
         val powerManager =
-                getSystemService(Context.POWER_SERVICE) as PowerManager
+            getSystemService(Context.POWER_SERVICE) as PowerManager
         wakeLock = powerManager.newWakeLock(
-                PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK,
-                localClassName
+            PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK,
+            localClassName
         )
 
         sensorEventListener = object : SensorEventListener {
@@ -395,9 +442,9 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         val sensor: Sensor = sensorManager!!.getDefaultSensor(Sensor.TYPE_PROXIMITY)
         sensorManager!!.registerListener(
-                sensorEventListener,
-                sensor,
-                SensorManager.SENSOR_DELAY_NORMAL
+            sensorEventListener,
+            sensor,
+            SensorManager.SENSOR_DELAY_NORMAL
         )
     }
 
@@ -416,7 +463,7 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
         override fun onServiceConnected(className: ComponentName, iBinder: IBinder) {
             val binder = iBinder as OutgoingCallService.CallBinder
             outgoingCallService = binder.service
-            //onServiceConnectionSuccessful()
+            onServiceConnectionSuccessful()
         }
 
         override fun onServiceDisconnected(arg0: ComponentName) {
@@ -430,6 +477,7 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
     }
 
     private fun terminateCall() {
+        outgoingCallService!!.onCallEnded()
         val audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
         cancelTimer()
         endCall()
@@ -437,7 +485,6 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
         isHoldOn = false
         isMuteOn = false
         audioManager.isSpeakerphoneOn = isSpeakerOn
-        setContentView(R.layout.activity_main)
         updateUI(PlivoBackEnd.STATE.IDLE, null)
     }
 
@@ -450,8 +497,6 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
         if (callData != null) {
             if (callData is Outgoing) {
                 (callData as Outgoing).hangup()
-            } else {
-                (callData as Incoming).hangup()
             }
         }
         onBackPressed()
@@ -487,9 +532,9 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener,
                 makeCall(textViewPhoneNo.text.toString())
             } else {
                 Toast.makeText(
-                        this,
-                        R.string.login_failed,
-                        Toast.LENGTH_SHORT
+                    this,
+                    R.string.login_failed,
+                    Toast.LENGTH_SHORT
                 ).show()
             }
         }
