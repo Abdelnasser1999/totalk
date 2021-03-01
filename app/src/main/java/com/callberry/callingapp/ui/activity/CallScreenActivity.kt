@@ -12,31 +12,20 @@ import android.media.AudioManager
 import android.os.Bundle
 import android.os.IBinder
 import android.os.PowerManager
-import android.os.Vibrator
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.callberry.callingapp.R
 import com.callberry.callingapp.model.OutgoingCall
-import com.callberry.callingapp.plivo.PlivoBackEnd
-import com.callberry.callingapp.plivo.UtilsPlivo
-import com.callberry.callingapp.plivo.UtilsPlivo.HH_MM_SS
-import com.callberry.callingapp.plivo.UtilsPlivo.MM_SS
 import com.callberry.callingapp.service.CallStateChangeListener
 import com.callberry.callingapp.service.LocalCallState
 import com.callberry.callingapp.service.OutgoingCallService
 import com.callberry.callingapp.util.*
-import com.google.firebase.iid.FirebaseInstanceId
-import com.plivo.endpoint.Incoming
 import com.plivo.endpoint.Outgoing
 import kotlinx.android.synthetic.main.activity_call_screen.*
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 
 class CallScreenActivity : AppCompatActivity(), CallStateChangeListener {
@@ -70,102 +59,6 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener {
 
     }
 
-
-    private fun showOutCallUI(state: PlivoBackEnd.STATE, outgoing: Outgoing) {
-        Log.d("TESTTAG", "showOutCallUI")
-        val title: String = state.name
-        val callerState: TextView
-        when (state) {
-            PlivoBackEnd.STATE.IDLE -> {
-                callerState = findViewById<View>(R.id.txtViewCallDuration) as TextView
-                callerState.text = title
-            }
-            PlivoBackEnd.STATE.RINGING -> {
-                callerState = findViewById<View>(R.id.txtViewCallDuration) as TextView
-                callerState.text = Constants.RINGING_LABEL
-            }
-            PlivoBackEnd.STATE.ANSWERED -> {
-//                outgoingCallService!!.onCallStarted()
-                imgViewHold.isEnabled = true
-                startTimer()
-            }
-            PlivoBackEnd.STATE.HANGUP, PlivoBackEnd.STATE.REJECTED -> {
-                outgoingCallService!!.onCallEnded()
-                cancelTimer()
-                updateUI(PlivoBackEnd.STATE.IDLE, null)
-            }
-        }
-    }
-
-    private fun makeCall(phoneNum: String) {
-        Log.d("TESTTAG", "makeCall")
-        val outgoing: Outgoing = (application as App).backend()!!.outgoing
-        if (outgoing != null) {
-            Log.d("TESTTAG", "makeCall is not null")
-            outgoing.call(phoneNum)
-        } else {
-            Log.d("TESTTAG", "makeCall is null")
-        }
-    }
-
-    private fun updateUI(state: PlivoBackEnd.STATE, data: Outgoing?) {
-        callData = data
-        if (state.equals(PlivoBackEnd.STATE.REJECTED) || state.equals(PlivoBackEnd.STATE.HANGUP) || state.equals(
-                PlivoBackEnd.STATE.INVALID
-            )
-        ) {
-            if (data is Outgoing) {
-                Log.d("TESTTAG", "data is Outgoing")
-                showOutCallUI(state, data)
-            }
-        } else {
-            if (data != null) {
-                if (data is Outgoing) {
-                    // handle outgoing
-                    showOutCallUI(state, (data as Outgoing?)!!)
-                }
-            }
-        }
-        // showOutCallUI(state, data as Outgoing)
-
-    }
-
-    private fun startTimer() {
-        cancelTimer()
-        callTimer = Timer(false)
-        callTimer.scheduleAtFixedRate(object : TimerTask() {
-            override fun run() {
-                runOnUiThread {
-                    val hours =
-                        TimeUnit.SECONDS.toHours(tick.toLong()).toInt()
-                    val minutes = TimeUnit.SECONDS.toMinutes(
-                        TimeUnit.HOURS.toSeconds(hours.toLong()).let { tick -= it; tick })
-                        .toInt()
-                    val seconds =
-                        (tick - TimeUnit.MINUTES.toSeconds(minutes.toLong())).toInt()
-                    val text = if (hours > 0) java.lang.String.format(
-                        HH_MM_SS,
-                        hours,
-                        minutes,
-                        seconds
-                    ) else java.lang.String.format(MM_SS, minutes, seconds)
-                    val timerTextView =
-                        findViewById<View>(R.id.txtViewCallDuration) as TextView
-                    if (timerTextView != null) {
-                        timerTextView.visibility = View.VISIBLE
-                        timerTextView.text = text
-                        tick++
-                    }
-                }
-            }
-        }, 100, TimeUnit.SECONDS.toMillis(1))
-    }
-
-    private fun cancelTimer() {
-        if (callTimer != null) callTimer.cancel()
-        tick = 0
-    }
-
     override fun onResume() {
         super.onResume()
         if (SharedPrefUtil.getBoolean(Constants.IS_CALL_IN_PROGRESS, false)) {
@@ -173,10 +66,6 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener {
         }
 
         updateSpeakerMuteAction()
-
-    }
-
-    private fun onServiceConnectionSuccessful() {
 
     }
 
@@ -423,7 +312,7 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener {
             val binder = iBinder as OutgoingCallService.CallBinder
             outgoingCallService = binder.service
             outgoingCallService?.setCallStateChangeListener(this@CallScreenActivity)
-            outgoingCallService?.loginAccount()
+            outgoingCallService?.initCall()
 
         }
 
@@ -435,13 +324,11 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener {
     private fun terminateCall() {
         outgoingCallService!!.onCallEnded()
         val audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
-        cancelTimer()
         endCall()
         isSpeakerOn = false
         isHoldOn = false
         isMuteOn = false
         audioManager.isSpeakerphoneOn = isSpeakerOn
-        updateUI(PlivoBackEnd.STATE.IDLE, null)
     }
 
     override fun onBackPressed() {

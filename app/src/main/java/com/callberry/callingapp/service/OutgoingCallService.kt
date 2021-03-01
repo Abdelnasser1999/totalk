@@ -8,33 +8,25 @@ import android.content.Intent
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Binder
-import android.os.Handler
 import android.os.IBinder
 import android.util.Log
-import android.view.View
-import android.widget.TextView
-import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import com.callberry.callingapp.R
 import com.callberry.callingapp.database.AppDatabase
 import com.callberry.callingapp.model.Credit
 import com.callberry.callingapp.model.OutgoingCall
 import com.callberry.callingapp.model.Recent
-import com.callberry.callingapp.plivo.PlivoBackEnd
-import com.callberry.callingapp.plivo.UtilsPlivo
+import com.callberry.callingapp.plivo.*
 import com.callberry.callingapp.ui.activity.CallScreenActivity
 import com.callberry.callingapp.util.*
-import com.google.firebase.iid.FirebaseInstanceId
-import com.plivo.endpoint.Incoming
 import com.plivo.endpoint.Outgoing
-import kotlinx.android.synthetic.main.activity_call_screen.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class OutgoingCallService : Service(), PlivoBackEnd.BackendListener {
+class OutgoingCallService : Service(), PlivoEventListener {
 
     private var callStateChangeListener: CallStateChangeListener? = null
     private var isCallStarted = false
@@ -45,7 +37,7 @@ class OutgoingCallService : Service(), PlivoBackEnd.BackendListener {
     private var callTimer = Timer()
     private var tick: Long = 0
     private var callData: Outgoing? = null
-    private var plivoBackEnd: PlivoBackEnd? = null
+    private var plivoHelper: PlivoHelper? = null
     private var builder: NotificationCompat.Builder? = null
     private var currentCallSate: String = "Connecting..."
 
@@ -55,9 +47,10 @@ class OutgoingCallService : Service(), PlivoBackEnd.BackendListener {
             SharedPrefUtil.get(Constants.OUTGOING_CALL, OutgoingCall::class) as OutgoingCall
         initCallerTune()
         updateCallInProgress(true)
-        plivoBackEnd = (application as App).backend()
-        plivoBackEnd?.setListener(this)
-        UtilsPlivo.backendListener = this
+        plivoHelper = PlivoHelper()
+        plivoHelper?.setListener(this)
+//        plivoEventListener = (application as App).backend()
+//        plivoEventListener?.setListener(this)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -69,17 +62,22 @@ class OutgoingCallService : Service(), PlivoBackEnd.BackendListener {
         return START_NOT_STICKY
     }
 
-    fun loginAccount() {
-        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener { instanceIdResult ->
-            plivoBackEnd?.login(instanceIdResult.token) ?: kotlin.run {
-                Constants.callLogs("Backend NULL")
-                callStateChangeListener?.onStateChange(LocalCallState.LOGIN_FAILED)
-                terminate()
-            }
-        }
+    fun setCallStateChangeListener(callStateChangeListener: CallStateChangeListener) {
+        this.callStateChangeListener = callStateChangeListener
     }
 
-    override fun onLogin(success: Boolean) {
+    fun initCall() {
+//        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener { instanceIdResult ->
+//            plivoEventListener?.login(instanceIdResult.token) ?: kotlin.run {
+//                Constants.callLogs("Backend NULL")
+//                callStateChangeListener?.onStateChange(LocalCallState.LOGIN_FAILED)
+//                terminate()
+//            }
+//        }
+        plivoHelper?.initCall()
+    }
+
+    override fun onInitialization(success: Boolean) {
         if (!success) {
             Constants.callLogs("Login Failed")
             callStateChangeListener?.onStateChange(LocalCallState.LOGIN_FAILED)
@@ -87,41 +85,33 @@ class OutgoingCallService : Service(), PlivoBackEnd.BackendListener {
             return
         }
         Constants.callLogs("Login Successful")
-        plivoBackEnd?.outgoing?.call(outgoingCall.phoneNo) ?: kotlin.run {
+        plivoHelper?.getOutgoing()?.call(outgoingCall.phoneNo) ?: kotlin.run {
             Constants.callLogs("Outgoing Call is NULL")
             callStateChangeListener?.onStateChange(LocalCallState.LOGIN_FAILED)
             terminate()
         }
     }
 
-    override fun onLogout() {
-        Constants.callLogs("Plivo Logout")
-    }
-
-    override fun onIncomingCall(data: Incoming?, callState: PlivoBackEnd.STATE?) {
-        Log.d("onIncomingCall", "Calling ${data?.callId}")
-    }
-
-    override fun onOutgoingCall(data: Outgoing?, callState: PlivoBackEnd.STATE?) {
+    override fun onCallStateChange(data: Outgoing?, callState: STATE) {
         callData = data
         when (callState) {
-            PlivoBackEnd.STATE.RINGING -> {
+            STATE.RINGING -> {
                 currentCallSate = getString(R.string.text_ringing)
                 builder?.setContentText(getString(R.string.text_ringing))
                 callStateChangeListener?.onStateChange(LocalCallState.CALL_RINGING)
                 callingTone.stop()
             }
-            PlivoBackEnd.STATE.ANSWERED -> {
+            STATE.ANSWERED -> {
                 isCallStarted = true
                 estimatedCallDuration = Utils.getEstimatedDurationInSeconds(outgoingCall.callRate)
                 callStateChangeListener?.onStateChange(LocalCallState.CALL_STARTED)
                 startTimer()
             }
-            PlivoBackEnd.STATE.HANGUP -> {
+            STATE.HANGUP -> {
                 onCallEnded()
             }
 
-            PlivoBackEnd.STATE.REJECTED -> {
+            STATE.REJECTED -> {
                 callStateChangeListener?.onStateChange(LocalCallState.CALL_REJECTED)
                 callingTone.stop()
                 terminate()
@@ -132,13 +122,67 @@ class OutgoingCallService : Service(), PlivoBackEnd.BackendListener {
         }
     }
 
-    override fun onIncomingDigit(digit: String?) {
-        Log.d("onIncomingDigit", "Digits $digit")
-    }
-
-    override fun mediaMetrics(messageTemplate: HashMap<*, *>?) {
-        Log.d("mediaMetrics", "mediaMetrics Called")
-    }
+//
+//    override fun onLogin(success: Boolean) {
+//        if (!success) {
+//            Constants.callLogs("Login Failed")
+//            callStateChangeListener?.onStateChange(LocalCallState.LOGIN_FAILED)
+//            terminate()
+//            return
+//        }
+//        Constants.callLogs("Login Successful")
+//        plivoEventListener?.outgoing?.call(outgoingCall.phoneNo) ?: kotlin.run {
+//            Constants.callLogs("Outgoing Call is NULL")
+//            callStateChangeListener?.onStateChange(LocalCallState.LOGIN_FAILED)
+//            terminate()
+//        }
+//    }
+//
+//    override fun onLogout() {
+//        Constants.callLogs("Plivo Logout")
+//    }
+//
+//    override fun onIncomingCall(data: Incoming?, callState: PlivoBackend.STATE?) {
+//        Log.d("onIncomingCall", "Calling ${data?.callId}")
+//    }
+//
+//    override fun onOutgoingCall(data: Outgoing?, callState: PlivoBackend.STATE?) {
+//        callData = data
+//        when (callState) {
+//            PlivoBackend.STATE.RINGING -> {
+//                currentCallSate = getString(R.string.text_ringing)
+//                builder?.setContentText(getString(R.string.text_ringing))
+//                callStateChangeListener?.onStateChange(LocalCallState.CALL_RINGING)
+//                callingTone.stop()
+//            }
+//            PlivoBackend.STATE.ANSWERED -> {
+//                isCallStarted = true
+//                estimatedCallDuration = Utils.getEstimatedDurationInSeconds(outgoingCall.callRate)
+//                callStateChangeListener?.onStateChange(LocalCallState.CALL_STARTED)
+//                startTimer()
+//            }
+//            PlivoBackend.STATE.HANGUP -> {
+//                onCallEnded()
+//            }
+//
+//            PlivoBackend.STATE.REJECTED -> {
+//                callStateChangeListener?.onStateChange(LocalCallState.CALL_REJECTED)
+//                callingTone.stop()
+//                terminate()
+//            }
+//            else -> {
+//                Log.d("onOutgoingCall", "State in IDLE")
+//            }
+//        }
+//    }
+//
+//    override fun onIncomingDigit(digit: String?) {
+//        Log.d("onIncomingDigit", "Digits $digit")
+//    }
+//
+//    override fun mediaMetrics(messageTemplate: HashMap<*, *>?) {
+//        Log.d("mediaMetrics", "mediaMetrics Called")
+//    }
 
     fun onCallEnded() {
         callingTone.stop()
@@ -154,9 +198,6 @@ class OutgoingCallService : Service(), PlivoBackEnd.BackendListener {
         return callData
     }
 
-    fun setCallStateChangeListener(callStateChangeListener: CallStateChangeListener) {
-        this.callStateChangeListener = callStateChangeListener
-    }
 
     private fun startTimer() {
         cancelTimer()
@@ -170,12 +211,12 @@ class OutgoingCallService : Service(), PlivoBackEnd.BackendListener {
                     .toInt()
                 val seconds =
                     (tick - TimeUnit.MINUTES.toSeconds(minutes.toLong())).toInt()
-                val text = if (hours > 0) java.lang.String.format(
-                    UtilsPlivo.HH_MM_SS,
+                val text = if (hours > 0) String.format(
+                    PlivoConfig.HH_MM_SS,
                     hours,
                     minutes,
                     seconds
-                ) else java.lang.String.format(UtilsPlivo.MM_SS, minutes, seconds)
+                ) else String.format(PlivoConfig.MM_SS, minutes, seconds)
                 builder?.setContentText(text)
                 tick++
                 if (tick == estimatedCallDuration) {
@@ -236,7 +277,7 @@ class OutgoingCallService : Service(), PlivoBackEnd.BackendListener {
     }
 
     private fun terminate() {
-        plivoBackEnd?.logout()
+//        plivoEventListener?.logout()
         updateCallInProgress(false)
         stopForeground(true)
         stopSelf()

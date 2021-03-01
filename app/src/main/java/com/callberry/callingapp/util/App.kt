@@ -7,8 +7,6 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.callberry.callingapp.R
 import com.callberry.callingapp.admob.AdHelper
-import com.callberry.callingapp.plivo.PlivoBackEnd
-import com.callberry.callingapp.plivo.UtilsPlivo
 import com.callberry.callingapp.ui.activity.CallScreenActivity
 import com.callberry.callingapp.worker.WorkerUtil
 import io.paperdb.Paper
@@ -16,7 +14,6 @@ import io.paperdb.Paper
 
 class App : Application() {
 
-    lateinit var backend: PlivoBackEnd
 
     override fun onCreate() {
         super.onCreate()
@@ -35,21 +32,11 @@ class App : Application() {
         if (SharedPrefUtil.getBoolean(Constants.IS_SETUP_COMPLETE, false)) {
             startSync()
         }
-        initPlivo()
+
 
 
     }
 
-    private fun initPlivo() {
-        UtilsPlivo.options.put("context", applicationContext)
-        UtilsPlivo.options.put("sharedContext", applicationContext)
-        backend = PlivoBackEnd.newInstance()
-        backend.init(true)
-    }
-
-    fun backend(): PlivoBackEnd? {
-        return backend
-    }
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val serviceChannel = NotificationChannel(
