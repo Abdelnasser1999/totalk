@@ -36,7 +36,7 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener {
     private lateinit var outgoingCall: OutgoingCall
     private var outgoingCallService: OutgoingCallService? = null
     private var callTimer = Timer()
-    private val callDurationTask = UpdateCallDurationTask()
+    private var callDurationTask = UpdateCallDurationTask()
     private var durationInSec: Long = 0
     private var sensorEventListener: SensorEventListener? = null
     private var wakeLock: PowerManager.WakeLock? = null
@@ -64,7 +64,7 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener {
         super.onResume()
         if (SharedPrefUtil.getBoolean(Constants.IS_CALL_IN_PROGRESS, false)) {
             if (outgoingCallService != null) {
-                Log.d("service","Service is not null")
+                Log.d("outgoingCallService","Out going call service is not null")
                 if (!outgoingCallService!!.isCallStarted()) {
                     txtViewCallDuration.text = outgoingCallService!!.getCurrentCallState()
                 } else {
@@ -72,7 +72,7 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener {
                 }
             }
             else{
-                Log.d("service","Service is null")
+                Log.d("outgoingCallService","Service is null")
             }
         }
 
@@ -151,6 +151,8 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener {
     }
 
     private fun updateCallTimer() {
+        callTimer = Timer()
+        callDurationTask = UpdateCallDurationTask()
         callTimer.schedule(callDurationTask, 0, 500)
     }
 
@@ -268,17 +270,15 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener {
     }
 
     private fun initWakeSensor() {
-        val powerManager =
-            getSystemService(Context.POWER_SERVICE) as PowerManager
+        val powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
         wakeLock = powerManager.newWakeLock(
             PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK,
             localClassName
         )
-
         sensorEventListener = object : SensorEventListener {
             override fun onSensorChanged(event: SensorEvent) {
-                if (!wakeLock!!.isHeld()) {
-                    wakeLock!!.acquire()
+                if (!wakeLock?.isHeld) {
+                    wakeLock?.acquire(10*60*1000L)
                 }
             }
 

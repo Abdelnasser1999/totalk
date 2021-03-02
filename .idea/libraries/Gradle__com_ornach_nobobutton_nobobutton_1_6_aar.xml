@@ -10,9 +10,11 @@
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/Downloads/gradle-3.3/caches/modules-2/files-2.1/com.ornach.nobobutton/nobobutton/1.6/911b15d3f7fbb294cf0ddb682bf1c90da2cffa01/nobobutton-1.6-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.ornach.nobobutton/nobobutton/1.6/911b15d3f7fbb294cf0ddb682bf1c90da2cffa01/nobobutton-1.6-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
       <root url="jar://$USER_HOME$/Downloads/gradle-3.3/caches/modules-2/files-2.1/com.ornach.nobobutton/nobobutton/1.6/4d36f5426938c8854d3d3df30144a025a05d3bcd/nobobutton-1.6-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.ornach.nobobutton/nobobutton/1.6/4d36f5426938c8854d3d3df30144a025a05d3bcd/nobobutton-1.6-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

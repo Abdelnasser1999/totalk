@@ -4,10 +4,14 @@
       <root url="jar://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/473b2cb4e5c7cda5595e76067e8df368/ipapi-retrofit-1.5.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/473b2cb4e5c7cda5595e76067e8df368/ipapi-retrofit-1.5.0/res" />
       <root url="file://$USER_HOME$/Downloads/gradle-3.3/caches/transforms-2/files-2.1/473b2cb4e5c7cda5595e76067e8df368/ipapi-retrofit-1.5.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/473b2cb4e5c7cda5595e76067e8df368/ipapi-retrofit-1.5.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/473b2cb4e5c7cda5595e76067e8df368/ipapi-retrofit-1.5.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/473b2cb4e5c7cda5595e76067e8df368/ipapi-retrofit-1.5.0/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/Downloads/gradle-3.3/caches/modules-2/files-2.1/com.github.seventhmoon/ipapi-retrofit/1.5.0/68f37dd5f4a6f1e8983706514505344a900ef8b5/ipapi-retrofit-1.5.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.seventhmoon/ipapi-retrofit/1.5.0/68f37dd5f4a6f1e8983706514505344a900ef8b5/ipapi-retrofit-1.5.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
