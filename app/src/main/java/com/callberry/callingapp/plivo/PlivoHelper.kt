@@ -1,6 +1,5 @@
 package com.callberry.callingapp.plivo
 
-import android.content.Context
 import com.google.firebase.iid.FirebaseInstanceId
 import com.plivo.endpoint.Endpoint
 import com.plivo.endpoint.EventListener
@@ -8,12 +7,12 @@ import com.plivo.endpoint.Incoming
 import com.plivo.endpoint.Outgoing
 import java.util.*
 
-public class PlivoHelper() : EventListener {
+class PlivoHelper() : EventListener {
     private var endpoint: Endpoint = Endpoint.newInstance(true, this)
     private lateinit var listener: PlivoEventListener
 
-    public fun setListener(listener: PlivoEventListener) {
-        this.listener = listener;
+    fun setListener(listener: PlivoEventListener) {
+        this.listener = listener
     }
 
     fun initCall() {

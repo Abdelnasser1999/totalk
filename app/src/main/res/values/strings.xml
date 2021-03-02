@@ -163,4 +163,5 @@
     <string name="reject">Reject</string>
     <string name="answer">Answer</string>
     <string name="text_ringing">Ringing...</string>
+    <string name="call_in_progress">Call in progress...</string>
 </resources>

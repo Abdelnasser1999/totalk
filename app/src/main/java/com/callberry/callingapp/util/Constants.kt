@@ -34,6 +34,10 @@ class Constants {
         const val LAST_BONUS_TIME = "LAST_BONUS_TIME"
         const val CURRENT_BALANCE = "CURRENT_BALANCE"
         const val IS_ACCOUNT_SETUP_SUCCESSFUL = "IS_ACCOUNT_SETUP_SUCCESSFUL"
+        const val STATE_CONNECTING = "Connecting..."
+        const val STATE_RINGING = "Ringing..."
+        const val STATE_ANSWERED = "ANSWERED"
+
 
         const val BONUS_CREDIT = "BONUS_CREDIT"
         const val CHECK_IN_CREDIT = "CHECK_IN_CREDIT"

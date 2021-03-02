@@ -2,15 +2,12 @@
   <library name="Gradle: com.maxmind.geoip2:geoip2:2.14.0">
     <CLASSES>
       <root url="jar://$USER_HOME$/Downloads/gradle-3.3/caches/modules-2/files-2.1/com.maxmind.geoip2/geoip2/2.14.0/72fa9536b9ca55c4195e5de011ed07b42419e269/geoip2-2.14.0.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.maxmind.geoip2/geoip2/2.14.0/72fa9536b9ca55c4195e5de011ed07b42419e269/geoip2-2.14.0.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/Downloads/gradle-3.3/caches/modules-2/files-2.1/com.maxmind.geoip2/geoip2/2.14.0/37403e0ad51dc7c9a420dd71e8ac1f1aeeb846f/geoip2-2.14.0-javadoc.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.maxmind.geoip2/geoip2/2.14.0/37403e0ad51dc7c9a420dd71e8ac1f1aeeb846f/geoip2-2.14.0-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
       <root url="jar://$USER_HOME$/Downloads/gradle-3.3/caches/modules-2/files-2.1/com.maxmind.geoip2/geoip2/2.14.0/c77b7928babe68227d7c9d2cd4024cac2f282863/geoip2-2.14.0-sources.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.maxmind.geoip2/geoip2/2.14.0/c77b7928babe68227d7c9d2cd4024cac2f282863/geoip2-2.14.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
