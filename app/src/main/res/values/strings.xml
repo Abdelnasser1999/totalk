@@ -164,4 +164,11 @@
     <string name="answer">Answer</string>
     <string name="text_ringing">Ringing...</string>
     <string name="call_in_progress">Call in progress...</string>
+    <string name="got_it">Got it</string>
+    <string name="string_global_calls">Global Calls</string>
+    <string name="string_free_credits">Free Credits</string>
+    <string name="string_private_number">Private Number</string>
+    <string name="global_call_description">ToTalk provide you Global free calls with private number, earn credits and make calls now</string>
+    <string name="free_credits_description">ToTalk provide free credits daily to its user</string>
+    <string name="private_number_description">ToTalk supports private number calling to keep its user secure</string>
 </resources>

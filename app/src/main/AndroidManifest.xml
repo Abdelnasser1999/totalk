@@ -35,6 +35,7 @@
         <activity android:name=".ui.activity.CallActivity"
             android:launchMode="singleTask"/>
         <activity android:name=".ui.LandingActivity" />
+        <activity android:name=".ui.activity.OnBoarding"/>
         <activity
             android:name=".ui.activity.CallScreenActivity"
             android:launchMode="singleTask" />

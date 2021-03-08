@@ -28,8 +28,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_hold" />
-                            <entry key="sourceFile" value="C:\Users\85\Desktop\androidProjects\freecall-codecanyon" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_obj_private_number" />
+                            <entry key="sourceFile" value="C:\Users\85\Downloads\obj_private_number.svg" />
                           </map>
                         </option>
                       </PersistentState>
