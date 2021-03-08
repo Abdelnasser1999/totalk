@@ -138,12 +138,7 @@ class UIUtil {
         }
 
         @JvmStatic
-        fun setIcon(
-            context: Context,
-            view: TextView,
-            name: String,
-            iconTheme: String = getTheme()
-        ) {
+        fun setIcon(context: Context, view: TextView, name: String, iconTheme: String = getTheme()) {
             view.text = getIcon(name)
             val theme: List<String> = iconTheme.split(", ")
             view.setTextColor(ContextCompat.getColor(context, theme[0].toInt()))

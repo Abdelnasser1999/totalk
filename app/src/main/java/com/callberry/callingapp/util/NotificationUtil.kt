@@ -10,7 +10,6 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.callberry.callingapp.R
 import com.callberry.callingapp.ui.activity.CallActivity
-import com.callberry.callingapp.ui.activity.CallScreenActivity
 
 object NotificationUtil {
     val CHANNEL_ID = "outgoingCallChannelId"

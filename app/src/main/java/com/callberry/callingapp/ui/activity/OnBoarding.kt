@@ -58,7 +58,7 @@ class OnBoarding : AppCompatActivity() {
         viewPager!!.addOnPageChangeListener(viewPagerPageChangeListener)
         btnGotIt!!.setOnClickListener { v: View? ->
             if (viewPager!!.currentItem == titleArray.size - 1) {
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, NumberVerificationActivity::class.java)
                 startActivity(intent)
                 finish()
             } else viewPager!!.currentItem = viewPager!!.currentItem + 1

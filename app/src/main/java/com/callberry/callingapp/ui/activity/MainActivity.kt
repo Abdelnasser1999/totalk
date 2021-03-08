@@ -2,6 +2,7 @@ package com.callberry.callingapp.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -21,53 +22,38 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private var currentPage = 1
+    private val homeFragment = HomeFragment()
+    private val creditFragment = CreditFragment()
+    private val callRateFragment = CallRateFragment()
+    private val moreFragment = MoreFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        init()
+        setupBottomNav()
+
         if (PlivoConfig.isCallInProgress()) {
             startActivity(Intent(this, CallActivity::class.java))
         }
+
     }
 
     override fun onResume() {
         super.onResume()
+        homeFragment.onResume()
 
-        init()
-        setupBottomNav()
+        Log.e("recents", "MainActivity")
     }
 
     private fun setupBottomNav() {
         bottomNav.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.menu_home -> updateView(
-                    1,
-                    getString(R.string.app_name),
-                    R.drawable.ic_search_main,
-                    HomeFragment()
-                )
-
-                R.id.menu_credits -> updateView(
-                    2,
-                    getString(R.string.menu_credits),
-                    R.drawable.ic_history,
-                    CreditFragment()
-                )
-
-                R.id.menu_call_rates -> updateView(
-                    3,
-                    getString(R.string.menu_call_rates),
-                    -1,
-                    CallRateFragment()
-                )
-
-                R.id.menu_more -> updateView(
-                    4,
-                    getString(R.string.menu_more),
-                    -1,
-                    MoreFragment()
-                )
+                R.id.menu_home -> updateView(1, getString(R.string.app_name), R.drawable.ic_search_main, homeFragment)
+                R.id.menu_credits -> updateView(2, getString(R.string.menu_credits), R.drawable.ic_history, creditFragment)
+                R.id.menu_call_rates -> updateView(3, getString(R.string.menu_call_rates), -1, callRateFragment)
+                R.id.menu_more -> updateView(4, getString(R.string.menu_more), -1, moreFragment)
 
             }
             true

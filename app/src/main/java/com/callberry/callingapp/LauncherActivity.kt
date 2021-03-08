@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.callberry.callingapp.ui.LandingActivity
 import com.callberry.callingapp.ui.activity.MainActivity
+import com.callberry.callingapp.ui.activity.OnBoarding
 import com.callberry.callingapp.util.*
 
 
@@ -25,7 +25,7 @@ class LauncherActivity : AppCompatActivity() {
             if (PrefUtils.getBoolean(Constants.IS_SETUP_COMPLETE, false)) {
                 route(MainActivity::class)
             } else {
-                route(LandingActivity::class)
+                route(OnBoarding::class)
             }
             finish()
         }, 500)

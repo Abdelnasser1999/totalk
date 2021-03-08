@@ -3,17 +3,14 @@ package com.callberry.callingapp.util
 import android.app.*
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.callberry.callingapp.R
 import com.callberry.callingapp.admob.AdHelper
-import com.callberry.callingapp.ui.activity.CallScreenActivity
 import com.callberry.callingapp.worker.WorkerUtil
 import io.paperdb.Paper
 
 
 class App : Application() {
-
 
     override fun onCreate() {
         super.onCreate()
@@ -33,7 +30,6 @@ class App : Application() {
             startSync()
         }
 
-
     }
 
     companion object {
@@ -45,18 +41,6 @@ class App : Application() {
 
         fun context(): Context {
             return context
-        }
-
-        fun createNotification(context: Context): Notification {
-            val notificationIntent = Intent(context, CallScreenActivity::class.java)
-            val pendingIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0)
-            return NotificationCompat.Builder(context, NotificationUtil.CHANNEL_ID)
-                .setDefaults(NotificationCompat.DEFAULT_ALL)
-                .setWhen(System.currentTimeMillis())
-                .setSmallIcon(R.drawable.ic_call)
-                .setContentTitle(context.getString(R.string.app_name))
-                .setContentText(context.getString(R.string.outgoing_call))
-                .build()
         }
 
         @JvmStatic

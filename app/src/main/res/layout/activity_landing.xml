@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorTab"
-    tools:context="com.callberry.callingapp.ui.LandingActivity">
+    tools:context="com.callberry.callingapp.ui.activity.LandingActivity">
 
     <ImageView
         android:id="@+id/imgViewIcon"

@@ -15,7 +15,6 @@ import com.callberry.callingapp.model.OutgoingCall
 import com.callberry.callingapp.model.remote.callrates.CallRate
 import com.callberry.callingapp.plivo.PlivoConfig
 import com.callberry.callingapp.ui.activity.CallActivity
-import com.callberry.callingapp.ui.activity.CallScreenActivity
 import com.callberry.callingapp.util.*
 import com.callberry.callingapp.viewmodel.CallRateViewModel
 import kotlinx.android.synthetic.main.fragment_init_call.*
@@ -124,32 +123,13 @@ class InitCallFragment : BottomSheetDialogFragment() {
         contact = arguments!!.getParcelable(ARG_CONTACT)!!
         viewModel = CallRateViewModel.getInstance(activity!!)
         materialBtnCall.setOnClickListener {
-            // TODO: For production release
             dismiss()
             startCall()
-
-            // TODO: For Demo Release
-            //starDemoCall()
         }
         materialBtnCancel.setOnClickListener { dismiss() }
 
     }
 
-    private fun starDemoCall() {
-        //This function will be eliminated so no need to localise
-        val materialAlertDialog = MaterialAlertDialog(activity!!)
-        materialAlertDialog.setTitle("Demo Call")
-        materialAlertDialog.setMessage("This app is for demo calls only, this call will redirect to this number +923027121483")
-        materialAlertDialog.setPositiveClick("Call now") {
-            callNow()
-            it.dismiss()
-
-        }
-        materialAlertDialog.setNegativeClick("Maybe later") {
-            it.dismiss()
-        }
-        materialAlertDialog.show()
-    }
 
     private fun startCall() {
         if (!isNetworkAvailable(activity!!)) {
@@ -169,20 +149,6 @@ class InitCallFragment : BottomSheetDialogFragment() {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         requireContext().startActivity(intent)
     }
-
-    private fun callNow() {
-        val outgoingCall = OutgoingCall()
-        outgoingCall.contactId = contact.contactId
-        outgoingCall.name = contact.name.toString()
-        outgoingCall.phoneNo = "+923027121483"
-        outgoingCall.dialCode = "+92"
-        outgoingCall.theme = contact.theme!!
-        outgoingCall.callRate = callRate
-        PrefUtils.set(Constants.OUTGOING_CALL, outgoingCall)
-        context!!.route(CallScreenActivity::class)
-        dismiss()
-    }
-
 
     companion object {
         private const val ARG_CONTACT = "ARG_CONTACT"

@@ -1,8 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: io.sentry:sentry-android-core:4.2.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0f696fd325b95af8596340f7d181a3c9/jetified-sentry-android-core-4.2.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0f696fd325b95af8596340f7d181a3c9/jetified-sentry-android-core-4.2.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/76fd4fba8ef4d3604770f5240dd63522/jetified-sentry-android-core-4.2.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0f696fd325b95af8596340f7d181a3c9/jetified-sentry-android-core-4.2.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0f696fd325b95af8596340f7d181a3c9/jetified-sentry-android-core-4.2.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>

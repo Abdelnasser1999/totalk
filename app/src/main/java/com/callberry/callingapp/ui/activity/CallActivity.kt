@@ -1,5 +1,6 @@
 package com.callberry.callingapp.ui.activity
 
+import android.app.Activity
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -182,8 +183,9 @@ class CallActivity : AppCompatActivity(), CallStateChangeListener, View.OnClickL
     }
 
     override fun onBackPressed() {
-        if (!PlivoConfig.isCallInProgress())
+        if (!PlivoConfig.isCallInProgress()){
             super.onBackPressed()
+        }
     }
 
     fun outgoingCall(): OutgoingCall {

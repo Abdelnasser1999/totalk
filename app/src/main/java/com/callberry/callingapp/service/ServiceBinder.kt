@@ -13,16 +13,16 @@ class ServiceBinder {
 
     companion object {
         @JvmStatic
-        fun bind(context: Context, callback: (binder: OutgoingCallService?) -> Unit) {
-            var outgoingCallService: OutgoingCallService? = null
-            val intent = Intent(context, OutgoingCallService::class.java)
+        fun bind(context: Context, callback: (binder: CallService?) -> Unit) {
+            var outgoingCallService: CallService? = null
+            val intent = Intent(context, CallService::class.java)
             val conn = object : ServiceConnection {
                 override fun onServiceDisconnected(name: ComponentName?) {
                     callback.invoke(outgoingCallService)
                 }
 
                 override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
-                    outgoingCallService = service as OutgoingCallService
+                    outgoingCallService = service as CallService
                     callback.invoke(outgoingCallService)
 
                 }
@@ -31,11 +31,11 @@ class ServiceBinder {
         }
 
         @JvmStatic
-        suspend fun bindService(): OutgoingCallService? {
-            val remoteService = Intent(App.context(), OutgoingCallService::class.java)
+        suspend fun bindService(): CallService? {
+            val remoteService = Intent(App.context(), CallService::class.java)
             val binderService =
                 bindServiceAndWait(App.context(), remoteService, Context.BIND_AUTO_CREATE)
-            return binderService.service as OutgoingCallService
+            return binderService.service as CallService
         }
 
         private suspend fun bindServiceAndWait(context: Context, intent: Intent, flags: Int) =

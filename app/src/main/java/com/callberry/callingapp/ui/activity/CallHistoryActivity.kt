@@ -50,7 +50,9 @@ class CallHistoryActivity : AppCompatActivity() {
                 return@Observer
             }
 
-            val adapter = CallHistoryAdapter(this, ArrayList(it))
+            val recentList = ArrayList(it)
+            recentList.reverse()
+            val adapter = CallHistoryAdapter(this, recentList)
             listRecents.layoutManager = LinearLayoutManager(this)
             listRecents.adapter = adapter
 

@@ -1,4 +1,4 @@
-package com.callberry.callingapp.ui
+package com.callberry.callingapp.ui.activity
 
 import android.app.Activity
 import android.content.Intent
@@ -8,11 +8,8 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.callberry.callingapp.R
 import com.callberry.callingapp.materialdialog.MaterialProgressDialog
-import com.callberry.callingapp.ui.activity.MainActivity
-import com.callberry.callingapp.ui.activity.NumberVerificationActivity
 import com.callberry.callingapp.util.*
 import com.callberry.callingapp.viewmodel.PreferenceViewModel
-import io.sentry.Sentry
 import kotlinx.android.synthetic.main.activity_landing.*
 
 class LandingActivity : AppCompatActivity() {
@@ -22,13 +19,8 @@ class LandingActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // setAutoDarkMode()
         setContentView(R.layout.activity_landing)
         initViews()
-    }
-
-    private fun setAutoDarkMode() {
-        //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
     }
 
     private fun initViews() {
@@ -40,7 +32,9 @@ class LandingActivity : AppCompatActivity() {
 
     private fun getStartedClickListener() = View.OnClickListener {
         val intent = Intent(this, NumberVerificationActivity::class.java)
-        startActivityForResult(intent, RC_LOGIN)
+        startActivityForResult(intent,
+            RC_LOGIN
+        )
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

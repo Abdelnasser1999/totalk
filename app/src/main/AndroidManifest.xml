@@ -34,11 +34,8 @@
         tools:targetApi="n">
         <activity android:name=".ui.activity.CallActivity"
             android:launchMode="singleTask"/>
-        <activity android:name=".ui.LandingActivity" />
+        <activity android:name=".ui.activity.LandingActivity" />
         <activity android:name=".ui.activity.OnBoarding"/>
-        <activity
-            android:name=".ui.activity.CallScreenActivity"
-            android:launchMode="singleTask" />
         <activity
             android:name=".ui.activity.CallRatesActivity"
             android:screenOrientation="portrait" />
@@ -70,6 +67,7 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".LauncherActivity"
+            android:theme="@style/AppTheme.Launcher"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -77,8 +75,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <service android:name=".service.OutgoingCallService" />
 
         <service android:name=".service.CallService" />
 
