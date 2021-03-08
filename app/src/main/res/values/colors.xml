@@ -65,4 +65,5 @@
     <color name="colorCongrats">#8C489F</color>
     <color name="colorDayNight">#FFFFFF</color>
     <color name="colorBlackWhite">#FFFFFF</color>
+    <color name="black">#000000</color>
 </resources>

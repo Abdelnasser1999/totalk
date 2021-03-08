@@ -33,6 +33,7 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
         <activity android:name=".ui.LandingActivity" />
+        <activity android:name=".ui.activity.OnBoarding"/>
         <activity
             android:name=".ui.activity.CallScreenActivity"
             android:launchMode="singleTask"

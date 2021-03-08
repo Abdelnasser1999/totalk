@@ -53,7 +53,8 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_call_screen)
 
-        outgoingCall = SharedPrefUtil.get(Constants.OUTGOING_CALL, OutgoingCall::class) as OutgoingCall
+        outgoingCall =
+            SharedPrefUtil.get(Constants.OUTGOING_CALL, OutgoingCall::class) as OutgoingCall
         initViews()
         initWakeSensor()
         bindService()
@@ -64,15 +65,14 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener {
         super.onResume()
         if (SharedPrefUtil.getBoolean(Constants.IS_CALL_IN_PROGRESS, false)) {
             if (outgoingCallService != null) {
-                Log.d("service","Service is not null")
+                Log.d("service", "Service is not null")
                 if (!outgoingCallService!!.isCallStarted()) {
                     txtViewCallDuration.text = outgoingCallService!!.getCurrentCallState()
                 } else {
                     updateCallTimer()
                 }
-            }
-            else{
-                Log.d("service","Service is null")
+            } else {
+                Log.d("service", "Service is null")
             }
         }
 
