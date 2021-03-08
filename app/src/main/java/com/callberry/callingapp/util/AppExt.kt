@@ -11,8 +11,10 @@ import android.view.View
 import android.view.ViewOutlineProvider
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -20,6 +22,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.callberry.callingapp.R
 import com.callberry.callingapp.viewmodel.AccountViewModel
 import com.callberry.callingapp.viewmodel.PreferenceViewModel
+import com.ornach.nobobutton.NoboButton
 import kotlinx.android.synthetic.main.activity_number_verification.*
 import kotlin.reflect.KClass
 
@@ -33,6 +36,11 @@ fun isNetworkAvailable(activity: Activity): Boolean {
 fun <T : Any> Context.route(activity: KClass<T>) {
     val intent = Intent(this, activity.java)
     startActivity(intent)
+}
+
+fun <T : Any> KClass<T>.run(activity: Context) {
+    val intent = Intent(activity, this.java)
+    activity.startActivity(intent)
 }
 
 fun Context.toast(msg: String) {
@@ -113,6 +121,22 @@ fun EditText.onTextChange(callback: (s: String) -> Unit) {
     })
 }
 
+fun <E> java.util.ArrayList<E>.enable(enable: Boolean) {
+    for (view in this) {
+        val btn: ImageView = view as ImageView
+        btn.isEnabled = enable
+    }
+}
+
+fun ImageView.updateView(context: Context, active: Boolean) {
+    if (active) {
+        this.background = ContextCompat.getDrawable(context, R.drawable.bg_active)
+        this.setColorFilter(ContextCompat.getColor(context, R.color.colorWhite))
+    } else {
+        this.background = ContextCompat.getDrawable(context, R.drawable.bg_non_active)
+        this.setColorFilter(ContextCompat.getColor(context, R.color.colorPrimary))
+    }
+}
 
 //fun Context.setEnable(button: MaterialButton, enable: Boolean) {
 ////    button.isEnabled = enable

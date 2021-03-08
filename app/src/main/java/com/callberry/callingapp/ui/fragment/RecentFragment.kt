@@ -22,14 +22,11 @@ class RecentFragment : Fragment(R.layout.fragment_recent), RecentAdapter.RecentC
         super.onViewCreated(view, savedInstanceState)
         viewModel = RecentViewModel.getInstance(activity!!)
 
-    }
-
-    override fun onResume() {
-        super.onResume()
         getRecentContacts()
+
     }
 
-    private fun getRecentContacts() {
+    fun getRecentContacts() {
         viewModel.getRecentContacts()
         viewModel.recentContacts().observe(this, Observer {
             if (it == null) {

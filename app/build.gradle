@@ -132,5 +132,7 @@ dependencies {
     implementation 'com.plivo.endpoint:endpoint:2.0.19@aar'
     //Messaging
     implementation 'com.google.firebase:firebase-messaging:17.3.4'
+    implementation 'io.sentry:sentry-android:4.2.0'
+
 
 }

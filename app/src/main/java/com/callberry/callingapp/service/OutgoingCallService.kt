@@ -43,7 +43,7 @@ class OutgoingCallService : Service(), PlivoEventListener {
     override fun onCreate() {
         super.onCreate()
         outgoingCall =
-            SharedPrefUtil.get(Constants.OUTGOING_CALL, OutgoingCall::class) as OutgoingCall
+            PrefUtils.get(Constants.OUTGOING_CALL, OutgoingCall::class) as OutgoingCall
         initCallerTune()
         updateCallInProgress(true)
         plivoHelper = PlivoHelper()
@@ -221,9 +221,9 @@ class OutgoingCallService : Service(), PlivoEventListener {
     }
 
     private fun updateCallInProgress(callStatus: Boolean) {
-        SharedPrefUtil.setBoolean(Constants.IS_CALL_IN_PROGRESS, callStatus)
+        PrefUtils.setBoolean(Constants.IS_CALL_IN_PROGRESS, callStatus)
         if (!callStatus) {
-            SharedPrefUtil.remove(Constants.OUTGOING_CALL)
+            PrefUtils.remove(Constants.OUTGOING_CALL)
         }
     }
 
@@ -246,7 +246,7 @@ class OutgoingCallService : Service(), PlivoEventListener {
     private fun createNotification(): Notification {
         val notificationIntent = Intent(this, CallScreenActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0)
-        val builder = NotificationCompat.Builder(this, App.CHANNEL_ID)
+        val builder = NotificationCompat.Builder(this, NotificationUtil.CHANNEL_ID)
         builder.setDefaults(NotificationCompat.DEFAULT_ALL)
         builder.setWhen(System.currentTimeMillis())
         builder.setSmallIcon(R.drawable.ic_call)

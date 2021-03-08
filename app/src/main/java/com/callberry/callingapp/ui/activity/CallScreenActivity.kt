@@ -15,7 +15,6 @@ import android.os.PowerManager
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.callberry.callingapp.R
@@ -53,7 +52,7 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_call_screen)
 
-        outgoingCall = SharedPrefUtil.get(Constants.OUTGOING_CALL, OutgoingCall::class) as OutgoingCall
+        outgoingCall = PrefUtils.get(Constants.OUTGOING_CALL, OutgoingCall::class) as OutgoingCall
         initViews()
         initWakeSensor()
         bindService()
@@ -62,7 +61,7 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener {
 
     override fun onResume() {
         super.onResume()
-        if (SharedPrefUtil.getBoolean(Constants.IS_CALL_IN_PROGRESS, false)) {
+        if (PrefUtils.getBoolean(Constants.IS_CALL_IN_PROGRESS, false)) {
             if (outgoingCallService != null) {
                 Log.d("outgoingCallService","Out going call service is not null")
                 if (!outgoingCallService!!.isCallStarted()) {
@@ -162,7 +161,7 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener {
         }
 
         private fun updateCallDuration() {
-            if (SharedPrefUtil.getBoolean(Constants.IS_CALL_IN_PROGRESS, false)) {
+            if (PrefUtils.getBoolean(Constants.IS_CALL_IN_PROGRESS, false)) {
                 durationInSec = outgoingCallService!!.getTimeInSeconds()
                 txtViewCallDuration.text = UIUtil.formatTimestamp(durationInSec)
             }
@@ -183,12 +182,12 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener {
         if (isHoldOn) {
             isHoldOn = false
             unHoldCall()
-            SharedPrefUtil.setBoolean(Constants.IS_HOLD_ON, false)
+            PrefUtils.setBoolean(Constants.IS_HOLD_ON, false)
             setActionView(imgViewHold, false)
         } else {
             isHoldOn = true
             holdCall()
-            SharedPrefUtil.setBoolean(Constants.IS_HOLD_ON, true)
+            PrefUtils.setBoolean(Constants.IS_HOLD_ON, true)
             setActionView(imgViewHold, true)
         }
     }
@@ -206,11 +205,10 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener {
     }
 
     private fun updateSpeakerMuteAction() {
-        setActionView(imgViewSpeaker, SharedPrefUtil.getBoolean(Constants.IS_SPREAKER_ON, false))
-        setActionView(imgViewMute, SharedPrefUtil.getBoolean(Constants.IS_MUTE_ON, false))
+        setActionView(imgViewSpeaker, PrefUtils.getBoolean(Constants.IS_SPREAKER_ON, false))
+        setActionView(imgViewMute, PrefUtils.getBoolean(Constants.IS_MUTE_ON, false))
 
-        speakerAudioManager =
-            applicationContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        speakerAudioManager = applicationContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
         speakerAudioManager!!.mode = AudioManager.MODE_IN_CALL
 
         muteAudioManager =
@@ -218,17 +216,16 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener {
         muteAudioManager!!.mode = AudioManager.MODE_IN_CALL
 
         imgViewSpeaker.setOnClickListener {
-
             if (!speakerAudioManager!!.isSpeakerphoneOn) {
                 speakerAudioManager!!.isSpeakerphoneOn = true
-                SharedPrefUtil.setBoolean(Constants.IS_SPREAKER_ON, true)
+                PrefUtils.setBoolean(Constants.IS_SPREAKER_ON, true)
                 setActionView(imgViewSpeaker, true)
                 return@setOnClickListener
             }
 
             speakerAudioManager!!.mode = AudioManager.MODE_IN_CALL
             speakerAudioManager!!.isSpeakerphoneOn = false
-            SharedPrefUtil.setBoolean(Constants.IS_SPREAKER_ON, false)
+            PrefUtils.setBoolean(Constants.IS_SPREAKER_ON, false)
             setActionView(imgViewSpeaker, false)
 
         }
@@ -236,12 +233,12 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener {
         imgViewMute.setOnClickListener {
             val btn = findViewById<View>(R.id.imgViewMute) as ImageView
             if (isMuteOn) {
-                SharedPrefUtil.setBoolean(Constants.IS_MUTE_ON, false)
+                PrefUtils.setBoolean(Constants.IS_MUTE_ON, false)
                 setActionView(imgViewMute, false)
                 isMuteOn = false
                 unMuteCall()
             } else {
-                SharedPrefUtil.setBoolean(Constants.IS_MUTE_ON, true)
+                PrefUtils.setBoolean(Constants.IS_MUTE_ON, true)
                 setActionView(imgViewMute, true)
                 isMuteOn = true
 
@@ -277,7 +274,7 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener {
         )
         sensorEventListener = object : SensorEventListener {
             override fun onSensorChanged(event: SensorEvent) {
-                if (!wakeLock?.isHeld) {
+                if (!wakeLock!!.isHeld) {
                     wakeLock?.acquire(10*60*1000L)
                 }
             }
@@ -287,11 +284,7 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener {
 
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         val sensor: Sensor = sensorManager!!.getDefaultSensor(Sensor.TYPE_PROXIMITY)
-        sensorManager!!.registerListener(
-            sensorEventListener,
-            sensor,
-            SensorManager.SENSOR_DELAY_NORMAL
-        )
+        sensorManager!!.registerListener(sensorEventListener, sensor, SensorManager.SENSOR_DELAY_NORMAL)
     }
 
 
@@ -332,7 +325,7 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener {
     }
 
     override fun onBackPressed() {
-        if (!SharedPrefUtil.getBoolean(Constants.IS_CALL_IN_PROGRESS, false))
+        if (!PrefUtils.getBoolean(Constants.IS_CALL_IN_PROGRESS, false))
             super.onBackPressed()
     }
 
@@ -343,8 +336,8 @@ class CallScreenActivity : AppCompatActivity(), CallStateChangeListener {
             }
         }
         sensorManager?.unregisterListener(sensorEventListener)
-        SharedPrefUtil.setBoolean(Constants.IS_SPREAKER_ON, false)
-        SharedPrefUtil.setBoolean(Constants.IS_MUTE_ON, false)
+        PrefUtils.setBoolean(Constants.IS_SPREAKER_ON, false)
+        PrefUtils.setBoolean(Constants.IS_MUTE_ON, false)
         super.onDestroy()
 
     }

@@ -1,5 +1,7 @@
 package com.callberry.callingapp.plivo
 
+import android.util.Log
+import com.callberry.callingapp.util.Constants
 import com.google.firebase.iid.FirebaseInstanceId
 import com.plivo.endpoint.Endpoint
 import com.plivo.endpoint.EventListener
@@ -22,7 +24,13 @@ class PlivoHelper() : EventListener {
     }
 
     fun getOutgoing(): Outgoing {
-        return endpoint.createOutgoingCall()
+        return try {
+            endpoint.createOutgoingCall()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.e(Constants.CRASH_LOG_CALL, "getOutgoing: ${e.message}")
+            Outgoing(endpoint)
+        }
     }
 
     override fun onIncomingCallRejected(p0: Incoming?) {
@@ -30,7 +38,12 @@ class PlivoHelper() : EventListener {
     }
 
     override fun onOutgoingCall(p0: Outgoing?) {
-        listener.onCallStateChange(p0, STATE.PROGRESS)
+        try {
+            listener.onCallStateChange(p0, STATE.PROGRESS)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.e(Constants.CRASH_LOG_CALL, "onOutgoingCall: ${e.message}")
+        }
     }
 
     override fun onIncomingCallInvalid(p0: Incoming?) {
@@ -38,7 +51,13 @@ class PlivoHelper() : EventListener {
     }
 
     override fun onOutgoingCallAnswered(p0: Outgoing?) {
-        listener.onCallStateChange(p0, STATE.ANSWERED)
+        try {
+            listener.onCallStateChange(p0, STATE.ANSWERED)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.e(Constants.CRASH_LOG_CALL, "onOutgoingCallAnswered: ${e.message}")
+        }
+
     }
 
     override fun onLogout() {
@@ -46,7 +65,13 @@ class PlivoHelper() : EventListener {
     }
 
     override fun onLoginFailed() {
-        listener.onInitialization(false)
+        try {
+            listener.onInitialization(false)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.e(Constants.CRASH_LOG_CALL, "onLoginFailed: ${e.message}")
+        }
+
     }
 
     override fun onIncomingCall(p0: Incoming?) {
@@ -54,7 +79,13 @@ class PlivoHelper() : EventListener {
     }
 
     override fun onOutgoingCallRejected(p0: Outgoing?) {
-        listener.onCallStateChange(p0, STATE.REJECTED)
+        try {
+            listener.onCallStateChange(p0, STATE.REJECTED)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.e(Constants.CRASH_LOG_CALL, "onOutgoingCallRejected: ${e.message}")
+        }
+
     }
 
     override fun onIncomingDigitNotification(p0: String?) {
@@ -62,22 +93,52 @@ class PlivoHelper() : EventListener {
     }
 
     override fun onOutgoingCallRinging(p0: Outgoing?) {
-        listener.onCallStateChange(p0, STATE.RINGING)
+        try {
+            listener.onCallStateChange(p0, STATE.RINGING)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.e(Constants.CRASH_LOG_CALL, "onOutgoingCallRinging: ${e.message}")
+        }
+
     }
 
     override fun onOutgoingCallInvalid(p0: Outgoing?) {
-        listener.onCallStateChange(p0, STATE.INVALID)
+        try {
+            listener.onCallStateChange(p0, STATE.INVALID)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.e(Constants.CRASH_LOG_CALL, "onOutgoingCallInvalid: ${e.message}")
+        }
+
     }
 
     override fun onOutgoingCallHangup(p0: Outgoing?) {
-        listener.onCallStateChange(p0, STATE.HANGUP)
+        try {
+            listener.onCallStateChange(p0, STATE.HANGUP)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.e(Constants.CRASH_LOG_CALL, "onOutgoingCallHangup: ${e.message}")
+        }
+
     }
 
     override fun onLogin() {
-        listener.onInitialization(true)
+        try {
+            listener.onInitialization(true)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.e(Constants.CRASH_LOG_CALL, "onLogin: ${e.message}")
+        }
+
     }
 
     override fun mediaMetrics(p0: HashMap<*, *>?) {
+        try {
+            Log.e(Constants.LOGS_CALLS, "Call Log Messages: ${p0.toString()}")
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.e(Constants.CRASH_LOG_CALL, "mediaMetrics: ${e.message}")
+        }
 
     }
 

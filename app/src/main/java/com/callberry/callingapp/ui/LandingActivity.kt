@@ -5,7 +5,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
 import com.callberry.callingapp.R
 import com.callberry.callingapp.materialdialog.MaterialProgressDialog
@@ -13,6 +12,7 @@ import com.callberry.callingapp.ui.activity.MainActivity
 import com.callberry.callingapp.ui.activity.NumberVerificationActivity
 import com.callberry.callingapp.util.*
 import com.callberry.callingapp.viewmodel.PreferenceViewModel
+import io.sentry.Sentry
 import kotlinx.android.synthetic.main.activity_landing.*
 
 class LandingActivity : AppCompatActivity() {
@@ -62,7 +62,7 @@ class LandingActivity : AppCompatActivity() {
         prefViewModel.prefLoaded().observe(this, Observer {
             progressDialog.dismiss()
             App.startSync()
-            SharedPrefUtil.setBoolean(Constants.IS_SETUP_COMPLETE, true)
+            PrefUtils.setBoolean(Constants.IS_SETUP_COMPLETE, true)
             route(MainActivity::class)
             finishAffinity()
         })

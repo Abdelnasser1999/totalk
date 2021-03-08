@@ -33,7 +33,7 @@ class SyncWorker(val context: Context, params: WorkerParameters) : Worker(contex
                         facebookAd?.let { PreferenceUtil.setFacebookAd(it) }
                         remoteCredits?.let { PreferenceUtil.setRemoteCredits(it) }
                         remotePackages?.let { PreferenceUtil.setPackages(it) }
-                        SharedPrefUtil.setLong(Constants.LAST_SYNC, System.currentTimeMillis())
+                        PrefUtils.setLong(Constants.LAST_SYNC, System.currentTimeMillis())
                     }
                 }
             }

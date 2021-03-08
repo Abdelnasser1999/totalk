@@ -1,13 +1,10 @@
 package com.callberry.callingapp.ui.fragment
 
-import android.app.AlertDialog
-import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -16,6 +13,8 @@ import com.callberry.callingapp.materialdialog.MaterialAlertDialog
 import com.callberry.callingapp.model.Contact
 import com.callberry.callingapp.model.OutgoingCall
 import com.callberry.callingapp.model.remote.callrates.CallRate
+import com.callberry.callingapp.plivo.PlivoConfig
+import com.callberry.callingapp.ui.activity.CallActivity
 import com.callberry.callingapp.ui.activity.CallScreenActivity
 import com.callberry.callingapp.util.*
 import com.callberry.callingapp.viewmodel.CallRateViewModel
@@ -121,21 +120,6 @@ class InitCallFragment : BottomSheetDialogFragment() {
         return "-1";
     }
 
-
-//    private fun getCallRate() {
-//        Handler().postDelayed({
-//            callRate = 1.5f
-//            textViewName.text = contact.name
-//            texViewPhoneNo.text = "${contact.phoneNo}"
-//            UIUtil.setIcon(context!!, textViewIcon, contact.name!!, contact.theme!!)
-//            val balance: Float = Utils.getBalance()
-//            textViewCurrentBalance.text = "$${UIUtil.formatBalance(balance)}"
-//            textViewCallRate.text = "$${callRate}"
-//            materialBtnCall.isEnabled = balance > callRate
-//            exchangeView(layoutContent, progressBar)
-//        }, 1000)
-//    }
-
     private fun init() {
         contact = arguments!!.getParcelable(ARG_CONTACT)!!
         viewModel = CallRateViewModel.getInstance(activity!!)
@@ -180,8 +164,10 @@ class InitCallFragment : BottomSheetDialogFragment() {
         outgoingCall.dialCode = contact.dialCode.toString()
         outgoingCall.theme = contact.theme!!
         outgoingCall.callRate = callRate
-        SharedPrefUtil.set(Constants.OUTGOING_CALL, outgoingCall)
-        context!!.route(CallScreenActivity::class)
+        PlivoConfig.setOutgoingCall(outgoingCall)
+        val intent = Intent(requireContext(), CallActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        requireContext().startActivity(intent)
     }
 
     private fun callNow() {
@@ -192,7 +178,7 @@ class InitCallFragment : BottomSheetDialogFragment() {
         outgoingCall.dialCode = "+92"
         outgoingCall.theme = contact.theme!!
         outgoingCall.callRate = callRate
-        SharedPrefUtil.set(Constants.OUTGOING_CALL, outgoingCall)
+        PrefUtils.set(Constants.OUTGOING_CALL, outgoingCall)
         context!!.route(CallScreenActivity::class)
         dismiss()
     }

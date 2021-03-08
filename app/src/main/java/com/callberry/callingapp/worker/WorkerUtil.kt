@@ -5,14 +5,13 @@ import android.text.format.DateUtils
 import android.util.Log
 import androidx.work.*
 import com.callberry.callingapp.util.Constants
-import com.callberry.callingapp.util.SharedPrefUtil
-import java.util.*
+import com.callberry.callingapp.util.PrefUtils
 import java.util.concurrent.TimeUnit
 
 class WorkerUtil {
     companion object {
         fun startBonusAlarm(context: Context) {
-            if (SharedPrefUtil.getBoolean(Constants.IS_BONUS_NOTIFICATION_ENABLED, true)) {
+            if (PrefUtils.getBoolean(Constants.IS_BONUS_NOTIFICATION_ENABLED, true)) {
                 val bonusWork = OneTimeWorkRequest.Builder(BonusWorker::class.java)
                     .setInitialDelay(1, TimeUnit.HOURS)
                     .build()
@@ -23,7 +22,7 @@ class WorkerUtil {
 
         fun syncIfNeeded(context: Context) {
             Log.d("pref", "Sync if needed")
-            val lastSync = SharedPrefUtil.getLong(Constants.LAST_SYNC)
+            val lastSync = PrefUtils.getLong(Constants.LAST_SYNC)
             if (lastSync == null || !DateUtils.isToday(lastSync)) {
                 runSyncJob(context)
             }

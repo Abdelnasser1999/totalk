@@ -32,11 +32,12 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
+        <activity android:name=".ui.activity.CallActivity"
+            android:launchMode="singleTask"/>
         <activity android:name=".ui.LandingActivity" />
         <activity
             android:name=".ui.activity.CallScreenActivity"
-            android:launchMode="singleTask"
-            />
+            android:launchMode="singleTask" />
         <activity
             android:name=".ui.activity.CallRatesActivity"
             android:screenOrientation="portrait" />
@@ -65,26 +66,32 @@
         <activity
             android:name=".ui.activity.MainActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".LauncherActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
         <service android:name=".service.OutgoingCallService" />
 
+        <service android:name=".service.CallService" />
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713" />
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <meta-data
+            android:name="io.sentry.dsn"
+            android:value="https://b4454d5a9b2a44c5abe2e2548042cb2e@o541966.ingest.sentry.io/5660942" />
+
     </application>
 
 </manifest>

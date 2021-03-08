@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.callberry.callingapp.R
+import com.callberry.callingapp.plivo.PlivoConfig
 import com.callberry.callingapp.ui.fragment.CallRateFragment
 import com.callberry.callingapp.ui.fragment.CreditFragment
 import com.callberry.callingapp.ui.fragment.HomeFragment
@@ -25,41 +26,47 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        if (PlivoConfig.isCallInProgress()) {
+            startActivity(Intent(this, CallActivity::class.java))
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
         init()
         setupBottomNav()
-
-
     }
 
     private fun setupBottomNav() {
         bottomNav.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_home -> updateView(
-                        1,
-                        getString(R.string.app_name),
-                        R.drawable.ic_search_main,
-                        HomeFragment()
+                    1,
+                    getString(R.string.app_name),
+                    R.drawable.ic_search_main,
+                    HomeFragment()
                 )
 
                 R.id.menu_credits -> updateView(
-                        2,
-                        getString(R.string.menu_credits),
-                        R.drawable.ic_history,
-                        CreditFragment()
+                    2,
+                    getString(R.string.menu_credits),
+                    R.drawable.ic_history,
+                    CreditFragment()
                 )
 
                 R.id.menu_call_rates -> updateView(
-                        3,
-                        getString(R.string.menu_call_rates),
-                        -1,
-                        CallRateFragment()
+                    3,
+                    getString(R.string.menu_call_rates),
+                    -1,
+                    CallRateFragment()
                 )
 
                 R.id.menu_more -> updateView(
-                        4,
-                        getString(R.string.menu_more),
-                        -1,
-                        MoreFragment()
+                    4,
+                    getString(R.string.menu_more),
+                    -1,
+                    MoreFragment()
                 )
 
             }
@@ -69,8 +76,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun isFromCredit(): Boolean {
         return intent.hasExtra(Constants.NOTIFICATION_INTENT) && intent.getBooleanExtra(
-                Constants.NOTIFICATION_INTENT,
-                false
+            Constants.NOTIFICATION_INTENT,
+            false
         )
     }
 
@@ -92,8 +99,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateView(pageNo: Int, title: String, icon: Int, fragment: Fragment) {
         supportFragmentManager.beginTransaction()
-                .replace(R.id.homeContainer, fragment)
-                .commit()
+            .replace(R.id.homeContainer, fragment)
+            .commit()
 
         textViewTitle.text = title
         currentPage = pageNo

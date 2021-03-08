@@ -34,9 +34,13 @@ class Constants {
         const val LAST_BONUS_TIME = "LAST_BONUS_TIME"
         const val CURRENT_BALANCE = "CURRENT_BALANCE"
         const val IS_ACCOUNT_SETUP_SUCCESSFUL = "IS_ACCOUNT_SETUP_SUCCESSFUL"
+
         const val STATE_CONNECTING = "Connecting..."
         const val STATE_RINGING = "Ringing..."
         const val STATE_ANSWERED = "ANSWERED"
+        const val STATE_ENDED = "Call ended"
+        const val STATE_REJECTED = "Call rejected"
+        const val STATE_FAILED = "Call failed"
 
 
         const val BONUS_CREDIT = "BONUS_CREDIT"
@@ -75,6 +79,7 @@ class Constants {
         const val CALL_RATES_LOGS = "callRatesLogs"
         const val ERROR_LOGS = "errorLogs"
         const val LOGS_CALLS = "callLogs"
+        const val CRASH_LOG_CALL = "callCrashLogs"
 
         @JvmStatic
         fun callLogs(msg: String) {

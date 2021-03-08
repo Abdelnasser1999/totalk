@@ -27,30 +27,16 @@ class App : Application() {
 //                .build())
 
         setContext(this)
-        createNotificationChannel()
+        NotificationUtil.createNotificationChannel(this)
         Paper.init(this)
-        if (SharedPrefUtil.getBoolean(Constants.IS_SETUP_COMPLETE, false)) {
+        if (PrefUtils.getBoolean(Constants.IS_SETUP_COMPLETE, false)) {
             startSync()
         }
 
 
-
-    }
-
-    private fun createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val serviceChannel = NotificationChannel(
-                CHANNEL_ID, getString(R.string.app_name),
-                NotificationManager.IMPORTANCE_DEFAULT
-            )
-            val manager = getSystemService(NotificationManager::class.java)
-            manager.createNotificationChannel(serviceChannel)
-        }
     }
 
     companion object {
-        const val CHANNEL_ID = "outgoingCallChannelId"
-
         private lateinit var context: Context
 
         fun setContext(context: Context) {
@@ -64,7 +50,7 @@ class App : Application() {
         fun createNotification(context: Context): Notification {
             val notificationIntent = Intent(context, CallScreenActivity::class.java)
             val pendingIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0)
-            return NotificationCompat.Builder(context, CHANNEL_ID)
+            return NotificationCompat.Builder(context, NotificationUtil.CHANNEL_ID)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setWhen(System.currentTimeMillis())
                 .setSmallIcon(R.drawable.ic_call)

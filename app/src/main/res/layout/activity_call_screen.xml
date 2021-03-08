@@ -137,13 +137,13 @@
                 android:layout_marginStart="16dp"
                 android:background="@drawable/bg_non_active"
                 android:padding="24dp"
-                android:tint="@color/colorPrimary"
                 app:layout_constraintBottom_toBottomOf="@+id/imgViewHold"
                 app:layout_constraintEnd_toEndOf="@+id/btnEndCall"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/imgViewHold"
                 app:layout_constraintTop_toTopOf="@+id/imgViewSpeaker"
-                app:srcCompat="@drawable/ic_mute" />
+                app:srcCompat="@drawable/ic_mute"
+                app:tint="@color/colorPrimary" />
 
             <com.ornach.nobobutton.NoboButton
                 android:id="@+id/btnEndCall"

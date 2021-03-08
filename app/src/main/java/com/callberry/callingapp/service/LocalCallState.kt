@@ -6,4 +6,5 @@ enum class LocalCallState {
     CALL_STARTED,
     CALL_REJECTED,
     CALL_ENDED,
+    ON_MODE_CHANGE,
 }

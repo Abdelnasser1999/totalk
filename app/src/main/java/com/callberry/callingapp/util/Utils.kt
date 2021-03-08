@@ -1,12 +1,9 @@
 package com.callberry.callingapp.util
 
 import android.content.Context
-import android.util.Log
 import com.callberry.callingapp.R
 import com.callberry.callingapp.model.Account
 import com.callberry.callingapp.model.Contact
-import com.callberry.callingapp.model.remote.BillingPackage
-import com.callberry.callingapp.model.remote.sinch.Sinch
 import io.paperdb.Paper
 
 class Utils {
@@ -16,12 +13,12 @@ class Utils {
 
         @JvmStatic
         fun getBalance(): Float {
-            return SharedPrefUtil.getFloat(Constants.CURRENT_BALANCE)
+            return PrefUtils.getFloat(Constants.CURRENT_BALANCE)
         }
 
         @JvmStatic
         fun updateCredit(credits: Float, type: String) {
-            var balance = SharedPrefUtil.getFloat(Constants.CURRENT_BALANCE)
+            var balance = PrefUtils.getFloat(Constants.CURRENT_BALANCE)
             if (type == Constants.CREDIT) {
                 var credit = credits.toString()
                 if (credit.length > 4) {
@@ -33,7 +30,7 @@ class Utils {
                 balance = if (balance < 0) 0.0f else balance
             }
 
-            SharedPrefUtil.setFloat(Constants.CURRENT_BALANCE, balance)
+            PrefUtils.setFloat(Constants.CURRENT_BALANCE, balance)
         }
 
         @JvmStatic
@@ -55,12 +52,12 @@ class Utils {
 
         @JvmStatic
         fun getToken(): String {
-            return SharedPrefUtil.getString(Constants.TOKEN) ?: ""
+            return PrefUtils.getString(Constants.TOKEN) ?: ""
         }
 
         @JvmStatic
         fun setToken(token: String) {
-            SharedPrefUtil.setString(Constants.TOKEN, "Bearer $token")
+            PrefUtils.setString(Constants.TOKEN, "Bearer $token")
         }
 
         @JvmStatic
